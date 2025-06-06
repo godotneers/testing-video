@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://v7jhkhim0lok"]
+
+[ext_resource type="Script" uid="uid://bukx7wngywwu1" path="res://components/trigger_plate/trigger_plate.gd" id="1_vqcvh"]
+[ext_resource type="Script" uid="uid://t0rwine8jw2d" path="res://components/trigger_plate/pitch_shifter.gd" id="2_armqg"]
+[ext_resource type="AudioStream" uid="uid://wrcnebqdherh" path="res://sfx/slide.ogg" id="3_q51qr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_52v10"]
+radius = 0.978027
+
+[sub_resource type="Animation" id="Animation_vqcvh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPart:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.242, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o26f3"]
+resource_name = "press"
+length = 1.2
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_q51qr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shift_pitch"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MovingPart:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.242, 0), Vector3(0, 0.167189, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_armqg"]
+resource_name = "release"
+length = 1.2
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_q51qr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shift_pitch"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MovingPart:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.167189, 0), Vector3(0, 0.242, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t14qb"]
+_data = {
+&"RESET": SubResource("Animation_vqcvh"),
+&"press": SubResource("Animation_o26f3"),
+&"release": SubResource("Animation_armqg")
+}
+
+[node name="TriggerPlate" type="Node3D"]
+script = ExtResource("1_vqcvh")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31641, 0)
+shape = SubResource("CylinderShape3D_52v10")
+
+[node name="FixedPart" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+use_collision = true
+size = Vector3(2, 0.3, 2)
+
+[node name="MovingPart" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242, 0)
+size = Vector3(1.8, 0.3, 1.8)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("2_armqg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_t14qb")
+}
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

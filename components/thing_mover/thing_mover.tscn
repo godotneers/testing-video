@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkqdelq0ggow3"]
+
+[ext_resource type="Script" uid="uid://046yasokxlji" path="res://components/thing_mover/thing_mover.gd" id="1_gxsef"]
+
+[node name="ThingMover" type="Node3D"]
+script = ExtResource("1_gxsef")

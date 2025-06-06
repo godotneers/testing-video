@@ -1,0 +1,1 @@
+﻿addons\gdUnit4\runtest.cmd --godot_bin c:\tools\godot\4.4\godot44.exe -a tests

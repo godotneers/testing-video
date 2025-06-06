@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://seyqrl7p6kpk"]
+
+[ext_resource type="Script" uid="uid://cff7mro772dus" path="res://components/player_controller/player_controller.gd" id="1_gh12t"]
+[ext_resource type="PackedScene" uid="uid://brsyy0hbjk5a8" path="res://components/camera/camera.tscn" id="2_8ibnc"]
+[ext_resource type="Resource" uid="uid://dg8cfl1mj53x8" path="res://input/player_movement.tres" id="2_m8o0o"]
+
+[node name="PlayerController" type="Node3D"]
+script = ExtResource("1_gh12t")
+player_movement = ExtResource("2_m8o0o")
+
+[node name="Camera" parent="." instance=ExtResource("2_8ibnc")]
+unique_name_in_owner = true
+top_level = true

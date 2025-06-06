@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://bu0i0bw2bdi0v"]
+
+[ext_resource type="PackedScene" uid="uid://c0liliyx8wsvv" path="res://components/torch/wall_torch.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://dds0dfw14j1in" path="res://components/input_manager/input_manager.tscn" id="1_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="2_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://components/trigger_plate/trigger_plate.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://seyqrl7p6kpk" path="res://components/player_controller/player_controller.tscn" id="4_dwbse"]
+[ext_resource type="Script" uid="uid://046yasokxlji" path="res://components/thing_mover/thing_mover.gd" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="8_gbfbk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
+albedo_color = Color(0.172549, 0.164706, 0.156863, 1)
+
+[sub_resource type="Environment" id="Environment_f3sb7"]
+background_mode = 1
+
+[node name="Level1" type="Node3D"]
+
+[node name="InputManager" parent="." instance=ExtResource("1_pkg7o")]
+
+[node name="Static" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Static"]
+use_collision = true
+size = Vector3(40, 5, 40)
+material = SubResource("StandardMaterial3D_gv5m4")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Static/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(38, 5, 38)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Static"]
+environment = SubResource("Environment_f3sb7")
+
+[node name="WallTorch" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0204, 1.0068, 7.6978)
+
+[node name="WallTorch2" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0204, 1.0068, -10.7896)
+
+[node name="WallTorch3" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.2569, 1.0068, -19.0491)
+
+[node name="WallTorch4" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.18608, 1.0068, -19.0491)
+
+[node name="WallTorch5" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.0641, 1.0068, -13.0225)
+
+[node name="WallTorch6" parent="Static" instance=ExtResource("1_f3sb7")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.0641, 1.0068, 11.0118)
+
+[node name="Wall2" parent="Static" instance=ExtResource("2_aqk2v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.65981, -2, -19.0604)
+length = 10.0
+
+[node name="PlayerPawn" parent="." instance=ExtResource("2_fj7yv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.21301, -1.4522, -6.66112)
+
+[node name="PlayerController" parent="PlayerPawn" instance=ExtResource("4_dwbse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08163, 0)
+
+[node name="TriggerPlate" parent="." instance=ExtResource("3_tlwt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21127, -2, 9.98764)
+
+[node name="MovableWall" parent="." instance=ExtResource("2_aqk2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -2, -8.55579)
+length = 10.0
+
+[node name="ThingMover" type="Node3D" parent="."]
+script = ExtResource("5_036b0")
+target = NodePath("../MovableWall")
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -2, -8.55579)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -6.24893, -8.55579)
+metadata/_custom_type_script = "uid://046yasokxlji"
+
+[node name="GuideDebugger" parent="." instance=ExtResource("8_gbfbk")]
+
+[connection signal="state_changed" from="TriggerPlate" to="ThingMover" method="run" unbinds=1]
