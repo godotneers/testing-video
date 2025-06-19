@@ -51,6 +51,10 @@ albedo_color = Color(0.136672, 0.0420341, 2.40654e-08, 1)
 
 [node name="WallTorch" type="Node3D"]
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837938, 1.04999, 0.434259)
+aabb = AABB(-1, -1, -1, 1, 2, 1)
+
 [node name="Mount" type="Node3D" parent="."]
 transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.0506395, 0, 0)
 
@@ -60,13 +64,14 @@ transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14823, 0)
 light_color = Color(0.972549, 1, 0, 1)
-light_energy = 1.49083
+light_energy = 1.06557
 shadow_enabled = true
+distance_fade_enabled = true
 omni_range = 77.238
 script = ExtResource("2_tuxec")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Mount"]
-transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0, 1.07583, 0)
+transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, -4.84288e-08, 1.07583, 0)
 amount = 50
 lifetime = 0.45
 local_coords = true
@@ -77,3 +82,6 @@ draw_pass_1 = SubResource("QuadMesh_yp16x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163539, 0.379683, 0)
 size = Vector3(0.347534, 0.25, 0.25)
 material = SubResource("StandardMaterial3D_ihokl")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="Mount/GPUParticles3D" method="set_visible" binds= [true]]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="Mount/GPUParticles3D" method="set_visible" binds= [false]]

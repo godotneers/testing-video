@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddb7l644pgjl3"]
+
+[ext_resource type="Script" uid="uid://duexj1gsvy88i" path="res://tests/test_support/test_indicator/test_indicator.gd" id="1_5g358"]
+[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://textures/dark.png" id="2_uidx1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfh4v"]
+albedo_texture = ExtResource("2_uidx1")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc46l"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+
+[node name="TestIndicator" type="Node3D"]
+script = ExtResource("1_5g358")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102395, 0)
+size = Vector3(1, 0.2, 1)
+material = SubResource("StandardMaterial3D_wfh4v")
+
+[node name="Light" type="CSGBox3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.179688, 0)
+size = Vector3(0.8, 0.2, 0.8)
+material = SubResource("StandardMaterial3D_kc46l")
+
+[node name="Label3D" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723722, 0)
+pixel_size = 0.01
+billboard = 1

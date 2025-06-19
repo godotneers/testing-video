@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://blffmkn4b1w50"]
+
+[ext_resource type="Script" uid="uid://fyh17r30inos" path="res://components/doggo_controller/doggo_controller.gd" id="1_kbf45"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyqnbxs" path="res://components/vision_scanner/vision_scanner.tscn" id="2_vision_scanner"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_5x6f0"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_0nbqb"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_jb8g3"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_kifqo"]
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="7_x8hbd"]
+
+[sub_resource type="Resource" id="Resource_n3ub2"]
+script = ExtResource("7_x8hbd")
+expression = "has_path"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"
+
+[node name="DoggoController" type="Node3D"]
+script = ExtResource("1_kbf45")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+target_desired_distance = 2.0
+avoidance_enabled = true
+avoidance_layers = 0
+avoidance_mask = 16
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_point_size = 6.16
+
+[node name="VisionScanner" parent="." instance=ExtResource("2_vision_scanner")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="StateChart" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_5x6f0")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("4_0nbqb")
+initial_state = NodePath("Decide")
+
+[node name="Decide" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_jb8g3")
+
+[node name="FollowPath" type="Node" parent="StateChart/Root/Decide"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../FollowPath")
+guard = SubResource("Resource_n3ub2")
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/Root/Decide"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../Idle")
+delay_in_seconds = "0.0"
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_jb8g3")
+
+[node name="To FollowPlayer" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../FollowPlayer")
+event = &"player_seen"
+delay_in_seconds = "0.0"
+
+[node name="FollowPlayer" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_0nbqb")
+initial_state = NodePath("NavigateToPlayer")
+
+[node name="NavigateToPlayer" type="Node" parent="StateChart/Root/FollowPlayer"]
+script = ExtResource("5_jb8g3")
+
+[node name="Follow" type="Node" parent="StateChart/Root/FollowPlayer/NavigateToPlayer"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../Follow")
+event = &"target_acquired"
+delay_in_seconds = "0.0"
+
+[node name="Follow" type="Node" parent="StateChart/Root/FollowPlayer"]
+script = ExtResource("5_jb8g3")
+
+[node name="NavigateToPlayer" type="Node" parent="StateChart/Root/FollowPlayer/Follow"]
+editor_description = "Refresh target every 0.5s, so we smoothly follow the player and not just try to calculate a new path once we're there."
+script = ExtResource("6_kifqo")
+to = NodePath("../../NavigateToPlayer")
+delay_in_seconds = "0.5"
+
+[node name="Decide" type="Node" parent="StateChart/Root/FollowPlayer"]
+script = ExtResource("6_kifqo")
+to = NodePath("..")
+event = &"player_lost"
+delay_in_seconds = "3"
+
+[node name="FollowPath" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_0nbqb")
+initial_state = NodePath("NavigateToNextPoint")
+
+[node name="NavigateToNextPoint" type="Node" parent="StateChart/Root/FollowPath"]
+script = ExtResource("5_jb8g3")
+
+[node name="Follow" type="Node" parent="StateChart/Root/FollowPath/NavigateToNextPoint"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../Follow")
+event = &"target_acquired"
+delay_in_seconds = "0.0"
+
+[node name="Follow" type="Node" parent="StateChart/Root/FollowPath"]
+script = ExtResource("5_jb8g3")
+
+[node name="NavigateToNextPoint" type="Node" parent="StateChart/Root/FollowPath/Follow"]
+editor_description = "Refresh target every 0.5s, so we smoothly follow the player and not just try to calculate a new path once we're there."
+script = ExtResource("6_kifqo")
+to = NodePath("../../NavigateToNextPoint")
+event = &"target_reached"
+delay_in_seconds = "0.0"
+
+[node name="FollowPlayer" type="Node" parent="StateChart/Root/FollowPath"]
+script = ExtResource("6_kifqo")
+to = NodePath("../../FollowPlayer")
+event = &"player_seen"
+delay_in_seconds = "0.0"
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="state_entered" from="StateChart/Root/FollowPlayer" to="." method="_on_follow_player_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/FollowPlayer" to="." method="_on_follow_player_state_exited"]
+[connection signal="state_entered" from="StateChart/Root/FollowPlayer/NavigateToPlayer" to="." method="_on_navigate_to_player_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/FollowPath/NavigateToNextPoint" to="." method="_on_navigate_to_next_point_state_entered"]

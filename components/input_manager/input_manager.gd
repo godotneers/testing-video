@@ -1,6 +1,7 @@
 extends Node
 
 @export var mapping_context: GUIDEMappingContext
+@export var toggle_mouse:GUIDEAction
 
 ## Initializes the input manager.
 func _ready() -> void:
@@ -9,4 +10,14 @@ func _ready() -> void:
 		return
 
 	GUIDE.enable_mapping_context(mapping_context)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	toggle_mouse.triggered.connect(_toggle_mouse)
+
+
+func _toggle_mouse():
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:	
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		

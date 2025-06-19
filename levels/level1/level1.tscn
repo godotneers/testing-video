@@ -1,0 +1,139 @@
+[gd_scene load_steps=17 format=3 uid="uid://bu0i0bw2bdi0v"]
+
+[ext_resource type="PackedScene" uid="uid://dds0dfw14j1in" path="res://components/input_manager/input_manager.tscn" id="1_ttjls"]
+[ext_resource type="PackedScene" uid="uid://c0liliyx8wsvv" path="res://components/torch/wall_torch.tscn" id="2_gc8my"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="3_aj31r"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="4_uflgq"]
+[ext_resource type="PackedScene" uid="uid://seyqrl7p6kpk" path="res://components/player_controller/player_controller.tscn" id="5_e2gyc"]
+[ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://components/trigger_plate/trigger_plate.tscn" id="6_wsno3"]
+[ext_resource type="Script" uid="uid://046yasokxlji" path="res://components/thing_mover/thing_mover.gd" id="7_sgvry"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="8_la5y6"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="9_3k617"]
+[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="10_jhqhn"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="11_ddtso"]
+[ext_resource type="PackedScene" uid="uid://bxnqvnwvs8yjr" path="res://components/bone/bone.tscn" id="12_f7y8c"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ttjls"]
+vertices = PackedVector3Array(-9, 0.40939, -11.25, -8, 0.40939, -11.25, -8, 0.40939, -17.75, -9.75, 0.40939, -10.5, -17.75, 0.40939, -17.75, -17.75, 0.40939, -8.5, -9.75, 0.40939, -8.5, -7.25, 0.40939, -11.25, -6.5, 0.40939, -10.5, 8, 0.40939, -8, 8, 0.40939, -17.75, -6.5, 0.40939, -8, 11.25, 0.40939, -17.75, 11.25, 0.40939, -10.25, 18, 0.40939, -10.25, 18, 0.40939, -17.75, -17.75, 0.40939, 8.25, -9.75, 0.40939, 8.25, -7.25, 0.40939, 11, -8, 0.40939, 11, -8, 0.40939, 18, -6.5, 0.40939, 10.25, 8.75, 0.40939, -7, 18, 0.40939, 18, 18, 0.40939, -7, -9, 0.40939, 11, -9.75, 0.40939, 10.25, -17.75, 0.40939, 18)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(3, 6, 5), PackedInt32Array(7, 1, 2), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 10), PackedInt32Array(8, 10, 9), PackedInt32Array(9, 11, 8), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(5, 6, 16), PackedInt32Array(16, 6, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(20, 18, 21), PackedInt32Array(9, 22, 11), PackedInt32Array(11, 22, 21), PackedInt32Array(20, 21, 23), PackedInt32Array(23, 21, 22), PackedInt32Array(23, 22, 24), PackedInt32Array(25, 19, 20), PackedInt32Array(25, 20, 26), PackedInt32Array(26, 20, 27), PackedInt32Array(26, 27, 16), PackedInt32Array(16, 17, 26)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navmesh"
+agent_radius = 1.0
+filter_ledge_spans = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
+albedo_color = Color(0.172549, 0.164706, 0.156863, 1)
+
+[sub_resource type="Environment" id="Environment_f3sb7"]
+background_mode = 1
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+
+[sub_resource type="Curve3D" id="Curve3D_jhqhn"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 16.597, 0, -17.481, 0, 0, 0, 0, 0, 0, 18.0656, 0, -9.75919, 0, 0, 0, 0, 0, 0, 11.6043, 0, -9.72395, 0, 0, 0, 0, 0, 0, 12.297, 0, -17.2731),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Level1" type="Node3D"]
+
+[node name="InputManager" parent="." instance=ExtResource("1_ttjls")]
+
+[node name="Navigation" type="Node" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("NavigationMesh_ttjls")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4103, 0, -11.1388)
+enabled = false
+end_position = Vector3(0.0408564, 0.0853195, 4.65299)
+
+[node name="Static" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Static" groups=["navmesh"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90939, 0)
+use_collision = true
+size = Vector3(40, 5, 40)
+material = SubResource("StandardMaterial3D_gv5m4")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Static/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+operation = 2
+use_collision = true
+size = Vector3(38, 5, 38)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Static"]
+environment = SubResource("Environment_f3sb7")
+
+[node name="WallTorch" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0204, 2.91619, 7.6978)
+
+[node name="WallTorch2" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0204, 2.91619, -10.7896)
+
+[node name="WallTorch3" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.2569, 2.91619, -19.0491)
+
+[node name="WallTorch4" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.18608, 2.91619, -19.0491)
+
+[node name="WallTorch5" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.0641, 2.91619, -13.0225)
+
+[node name="WallTorch6" parent="Static" instance=ExtResource("2_gc8my")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.0641, 2.91619, 11.0118)
+
+[node name="Wall2" parent="Static" instance=ExtResource("3_aj31r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.65981, -0.0906057, -19.0604)
+length = 10.0
+
+[node name="Wall3" parent="Static" instance=ExtResource("3_aj31r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.00818, -0.0906057, -10.2197)
+length = 20.0
+
+[node name="PlayerPawn" parent="." instance=ExtResource("4_uflgq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.213, 0, -6.661)
+
+[node name="PlayerController" parent="PlayerPawn" instance=ExtResource("5_e2gyc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08163, 0)
+
+[node name="TriggerPlate" parent="." instance=ExtResource("6_wsno3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.243, -0.09061, 2.26268)
+
+[node name="MovableWall" parent="." instance=ExtResource("3_aj31r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+length = 10.0
+
+[node name="ThingMover" type="Node3D" parent="."]
+script = ExtResource("7_sgvry")
+target = NodePath("../MovableWall")
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -4.30497, -8.55579)
+metadata/_custom_type_script = "uid://046yasokxlji"
+
+[node name="GuideDebugger" parent="." instance=ExtResource("8_la5y6")]
+visible = false
+
+[node name="DoggoPawn" parent="." instance=ExtResource("9_3k617")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.747, 0.0230365, -12.1346)
+
+[node name="DoggoController" parent="DoggoPawn" node_paths=PackedStringArray("path") instance=ExtResource("10_jhqhn")]
+path = NodePath("../../Path3D")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_jhqhn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("11_ddtso")]
+offset_right = -1372.0
+offset_bottom = -548.0
+initial_node_to_watch = NodePath("../../DoggoPawn/DoggoController")
+
+[node name="Bone" parent="." instance=ExtResource("12_f7y8c")]
+
+[connection signal="state_changed" from="TriggerPlate" to="ThingMover" method="run" unbinds=1]
+[connection signal="arrived_at_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
+[connection signal="departed_from_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]

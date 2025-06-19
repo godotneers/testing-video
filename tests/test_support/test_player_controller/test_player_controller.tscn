@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8su35f66ctid"]
+
+[ext_resource type="Script" uid="uid://sacvc0pkwukh" path="res://tests/test_support/test_player_controller/test_player_controller.gd" id="1_yegtv"]
+
+[node name="TestPlayerController" type="Node3D"]
+script = ExtResource("1_yegtv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+target_desired_distance = 0.3
+debug_enabled = true
+debug_path_custom_point_size = 7.36

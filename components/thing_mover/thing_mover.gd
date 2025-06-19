@@ -3,6 +3,12 @@
 class_name ThingMover
 extends Node3D
 
+
+signal arrived_at_end()
+signal arrived_at_start()
+signal departed_from_start()
+signal departed_from_end()
+
 @export_node_path("Node3D") var target:NodePath
 @export var duration:float = 3
 @export var ease:Tween.EaseType = Tween.EASE_IN_OUT
@@ -14,7 +20,7 @@ extends Node3D
 @export_tool_button("Test") var toggle = run
 @export_tool_button("Reset") var reset_button = reset
 
-var _at_start:bool = false
+var _at_start:bool = true
 var _current_tween:Tween
 var _dying:bool = false
 
@@ -42,7 +48,7 @@ func _set_end():
 	undo.commit_action()
 
 func run():
-	if _dying:
+	if _dying or not is_inside_tree():
 		return
 	
 	if is_instance_valid(_current_tween):
@@ -52,14 +58,27 @@ func run():
 	if node == null:
 		return
 	
+	if _at_start:
+		print("departed from start")
+		departed_from_start.emit()
+	else:
+		print("delaprted from end")
+		departed_from_end.emit()
+		
 	_at_start = not _at_start
 	_current_tween = get_tree().create_tween()
 	_current_tween \
 		.set_ease(ease) \
 		.set_trans(transition) \
 		.tween_property(node, "transform", 
-			end_transform if _at_start else start_transform, 
+			end_transform if not _at_start else start_transform, 
 			duration)
+			
+	if _at_start:
+		_current_tween.finished.connect(func(): arrived_at_start.emit())	
+	else:			
+		_current_tween.finished.connect(func(): arrived_at_end.emit())	
+	
 
 func reset():
 	if _dying:
@@ -73,7 +92,7 @@ func reset():
 		return
 		
 	node.transform = start_transform
-	_at_start = false	
+	_at_start = true	
 	
 func run_once():
 	if _dying:

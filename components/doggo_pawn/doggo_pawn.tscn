@@ -1,0 +1,117 @@
+[gd_scene load_steps=24 format=3 uid="uid://c8yvwpvyuq5gx"]
+
+[ext_resource type="Script" uid="uid://depbwvow7vikv" path="res://components/doggo_pawn/doggo_pawn.gd" id="1_yjnqm"]
+[ext_resource type="AnimationLibrary" uid="uid://bq2t5qjksoh4b" path="res://components/doggo_pawn/doggo_pawn_animation_library.tres" id="2_2xfjo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ae084"]
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yvqxe"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5iqx"]
+animation = &"attentive"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xfjo"]
+animation = &"gain_attention"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hctyr"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpfq8"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqi0w"]
+animation = &"lose_attention"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3us3o"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f5iqx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgcim"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ixacs"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bto2h"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5fxit"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w874y"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xfjo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hctyr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7w5p4"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c8amw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rfdn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nkfs8"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c8amw"]
+states/End/position = Vector2(974, 77.5313)
+states/Start/position = Vector2(124, 78.25)
+states/attentive/node = SubResource("AnimationNodeAnimation_f5iqx")
+states/attentive/position = Vector2(713.313, -52.3402)
+states/gain_attention/node = SubResource("AnimationNodeAnimation_2xfjo")
+states/gain_attention/position = Vector2(515.25, 75.4531)
+states/idle/node = SubResource("AnimationNodeAnimation_hctyr")
+states/idle/position = Vector2(330.5, 78.5)
+states/jump/node = SubResource("AnimationNodeAnimation_tpfq8")
+states/jump/position = Vector2(209.75, -138.094)
+states/lose_attention/node = SubResource("AnimationNodeAnimation_sqi0w")
+states/lose_attention/position = Vector2(438.281, -53.9911)
+states/walk/node = SubResource("AnimationNodeAnimation_3us3o")
+states/walk/position = Vector2(577.313, -138.188)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_f5iqx"), "idle", "gain_attention", SubResource("AnimationNodeStateMachineTransition_fgcim"), "gain_attention", "lose_attention", SubResource("AnimationNodeStateMachineTransition_ixacs"), "lose_attention", "idle", SubResource("AnimationNodeStateMachineTransition_bto2h"), "gain_attention", "walk", SubResource("AnimationNodeStateMachineTransition_5fxit"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_w874y"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_2xfjo"), "walk", "lose_attention", SubResource("AnimationNodeStateMachineTransition_hctyr"), "gain_attention", "attentive", SubResource("AnimationNodeStateMachineTransition_7w5p4"), "attentive", "walk", SubResource("AnimationNodeStateMachineTransition_c8amw"), "attentive", "lose_attention", SubResource("AnimationNodeStateMachineTransition_6rfdn"), "walk", "attentive", SubResource("AnimationNodeStateMachineTransition_nkfs8")]
+graph_offset = Vector2(45, -39.586)
+
+[node name="DoggoPawn" type="CharacterBody3D"]
+collision_layer = 32
+script = ExtResource("1_yjnqm")
+max_speed = 5.0
+
+[node name="Body" type="CSGBox3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="EyeCutout" type="CSGSphere3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+operation = 2
+calculate_tangents = false
+radius = 0.3
+radial_segments = 24
+smooth_faces = false
+
+[node name="Eye" type="CSGSphere3D" parent="Body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+radius = 0.25
+material = SubResource("StandardMaterial3D_ae084")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_yvqxe")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_c8amw")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("2_2xfjo")
+}

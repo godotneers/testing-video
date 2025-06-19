@@ -1,11 +1,6 @@
 class_name Pawn
 extends CharacterBody3D
 
-## Maximum Health
-@export var max_health:int = 100
-
-## Current health
-var health:int = max_health
 
 ## Maximum speed in m/s
 @export var max_speed:float = 10
@@ -21,33 +16,34 @@ var forward:Vector3:
 var right:Vector3:
 	get: return transform.basis.x
 
-var direction:Vector3:
-	set(value):
-		direction = value.normalized()
+var _desired_velocity:Vector3
 
-var _jump_pending:bool
-func jump():
-	_jump_pending = true
+func set_desired_direction(direction:Vector3):
+	_desired_velocity = direction.normalized() * max_speed
+
+func set_desired_velocity(desired_velocity:Vector3):	
+	# do not exceed pawns maximum speed
+	var speed = min(desired_velocity.length(), max_speed)
+	_desired_velocity = desired_velocity.normalized() * speed
 
 func _physics_process(delta: float) -> void:
-	velocity = direction * max_speed
-	if _jump_pending:
-		velocity.y -= jump_height / delta
-		
-	if not direction.is_zero_approx():
-		var angle = forward.angle_to(direction)
+	velocity = _desired_velocity
+
+	# Automagically turn into walk direction
+	if not _desired_velocity.is_zero_approx():
+		# pawn axis always stays perpendicular during turning, so any y component
+		# in the direction is ignored.
+		var turn_direction  := _desired_velocity.normalized() * Vector3(1,0,1)
+		var angle := forward.angle_to(turn_direction)
 		if not is_zero_approx(angle):
 			transform = transform.interpolate_with(
-				transform.looking_at(global_position + direction),
+				transform.looking_at(global_position + turn_direction),
 				clamp(0, 1.0, turn_speed * delta / angle)
 			)
-	
-	if not is_on_floor():
+
+	if is_on_floor():
+		velocity.y = 0
+	else:
 		velocity += get_gravity()	
-		
-	move_and_slide()
 	
-func take_damage(amount:int):
-	health -= amount
-	if health < 0:
-		queue_free()	
+	move_and_slide()

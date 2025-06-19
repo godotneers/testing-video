@@ -23,6 +23,7 @@ GUIDE="*res://addons/guide/guide.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -30,7 +31,18 @@ project/assembly_name="testing_video"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/guide/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/guide/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_lookup_folder="tests"
+settings/test/test_discovery=true
+ui/toolbar/run_overall=true
+
+[global_group]
+
+navmesh=""
+player=""
 
 [godot_resource_groups]
 
@@ -89,4 +101,6 @@ zoom_out={
 
 [layer_names]
 
-3d_physics/layer_1="Player"
+3d_physics/layer_1="World"
+3d_physics/layer_5="Player"
+3d_physics/layer_6="Enemies"

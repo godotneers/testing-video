@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cap2fwv4t5gm" path="res://components/wall/wall.gd" id="1_fs7kv"]
 
-[node name="Wall" type="Node3D"]
+[node name="Wall" type="Node3D" groups=["navmesh"]]
 script = ExtResource("1_fs7kv")
 
 [node name="Box" type="CSGBox3D" parent="."]

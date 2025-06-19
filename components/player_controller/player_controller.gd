@@ -25,8 +25,7 @@ func _process(_delta:float) -> void:
 		
 	var direction = player_movement.value_axis_2d
 	var camera_direction = _camera.global_basis * Vector3(direction.x, 0, direction.y).normalized()
-	_pawn.direction = camera_direction
-	
+	_pawn.set_desired_direction(camera_direction)
 	
 	# the camera is top_level so it can rotate freely without being affected by
 	# the pawns rotation. We only update its position so it stays with the pawn.

@@ -21,4 +21,4 @@ func _refresh():
 		return
 		
 	_box.size.x = length
-	_box.position.x = 0 if centered else length / 2.0	
+	_box.position.x = 0.0 if centered else length / 2.0	

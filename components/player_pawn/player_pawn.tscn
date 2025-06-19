@@ -10,7 +10,8 @@ radius = 1.0
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_twc2s"]
 
-[node name="PlayerPawn" type="CharacterBody3D"]
+[node name="PlayerPawn" type="CharacterBody3D" groups=["player"]]
+collision_layer = 16
 script = ExtResource("1_hxcsb")
 turn_speed = 12.5664
 
@@ -40,36 +41,44 @@ bones/3/rotation = Quaternion(0.707218, 0.000782731, -0.000781995, 0.706995)
 bones/8/rotation = Quaternion(0.515512, 0.28434, 0.187726, 0.786229)
 bones/10/rotation = Quaternion(0.515513, -0.284337, -0.187724, 0.786231)
 bones/12/position = Vector3(0, 0.888697, 0.93899)
+bones/15/position = Vector3(-0.944505, 0.418923, -0.223066)
+bones/15/rotation = Quaternion(0.707107, -1.99496e-07, -1.99496e-07, 0.707107)
+bones/17/position = Vector3(0.944505, 0.418923, -0.223066)
+bones/17/rotation = Quaternion(0.707107, 1.99496e-07, 1.99496e-07, 0.707107)
 
 [node name="Eye L" parent="Model/mr_g/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.57456e-11, -9.45877e-10, -3.33785e-10, 1, -2.2992e-09, 9.16695e-10, -2.2992e-09, 1, 1.49012e-08, -2.98023e-08, 1.78814e-07)
+transform = Transform3D(1, 1.31649e-10, 6.83974e-10, -3.95858e-10, 1, 2.3609e-07, -4.80454e-10, -2.40689e-07, 1, 1.49012e-08, -1.49012e-07, 2.38419e-07)
 
 [node name="Eye R" parent="Model/mr_g/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.532944, 5.49213e-14, -1.67972e-10, -2.52925e-10, -1.60377e-07, -0.532944, 2.32722e-10, 0.532944, -1.5914e-07, -0.207193, 0.198796, 0.533873)
+transform = Transform3D(0.532944, -8.1495e-10, 1.41995e-10, 2.34905e-10, 2.8433e-07, -0.532944, 9.31522e-10, 0.532944, 2.85567e-07, -0.207193, 0.198796, 0.533873)
 
 [node name="Lid L" parent="Model/mr_g/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.600284, -0.0180145, -0.0189078, -0.0253286, -0.295605, -0.522494, 0.00636299, 0.522797, -0.296085, 0.207193, 0.198796, 0.533873)
+transform = Transform3D(0.600284, -0.0180147, -0.0189083, -0.0253291, -0.295605, -0.522494, 0.00636292, 0.522797, -0.296085, 0.207193, 0.198796, 0.533873)
 
 [node name="Lid R" parent="Model/mr_g/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.600284, -0.0180144, -0.0189077, -0.0253285, -0.295604, -0.522494, 0.006363, 0.522797, -0.296084, -0.207193, 0.198796, 0.533873)
+transform = Transform3D(0.600284, -0.0180141, -0.0189073, -0.025328, -0.295604, -0.522494, 0.00636288, 0.522797, -0.296084, -0.207193, 0.198796, 0.533873)
 
 [node name="Hand R" parent="Model/mr_g/Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, 1.13687e-13, -1.31687e-13, -2.27374e-13, 1, -2.38419e-07, 1.1653e-13, 2.38419e-07, 1, -0.944505, -0.121741, -0.0688697)
+transform = Transform3D(1, 1.13687e-13, -1.03265e-13, -1.7053e-13, 1, 1.19209e-07, 8.52651e-14, -1.19209e-07, 1, -0.944505, -0.121741, -0.0688699)
 
 [node name="Hand L" parent="Model/mr_g/Armature/Skeleton3D" index="5"]
-transform = Transform3D(1, -1.13687e-13, 1.31687e-13, 2.27374e-13, 1, -2.38419e-07, -1.1653e-13, 2.38419e-07, 1, -0.944505, -0.121741, -0.0688697)
+transform = Transform3D(1, -1.13687e-13, 1.03265e-13, 1.7053e-13, 1, 1.19209e-07, -8.52651e-14, -1.19209e-07, 1, -0.944506, -0.121741, -0.0688699)
 
 [node name="Head" parent="Model/mr_g/Armature/Skeleton3D" index="6"]
 transform = Transform3D(0.532944, 0, 0, 0, 0.532944, 0, 0, 0, 0.532944, 0, 0, 0)
 
 [node name="HandAttachment" type="BoneAttachment3D" parent="Model"]
 unique_name_in_owner = true
-transform = Transform3D(-1, -1.3453e-13, -8.74226e-08, -2.27374e-13, 1, -2.38419e-07, 8.74227e-08, -2.38419e-07, -1, 0.944505, 0.905029, 0.0688696)
+transform = Transform3D(-1, -1.03265e-13, -8.74227e-08, -1.7053e-13, 1, 1.19209e-07, 8.74227e-08, 1.19209e-07, -1, 0.944505, 0.905029, 0.0688698)
 bone_name = "Hand R"
 bone_idx = 16
 use_external_skeleton = true
 external_skeleton = NodePath("../mr_g/Armature/Skeleton3D")
 
 [node name="Torch" parent="Model/HandAttachment" instance=ExtResource("5_pgcb8")]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 3.0
+avoidance_layers = 16
 
 [editable path="Model/mr_g"]
