@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c06nyb4r33njc" path="res://components/vision_scanner/vision_cone_shape.gd" id="2_5fs12"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5fs12"]
-points = PackedVector3Array(0, 0, 0, 20, 0, -20, 14.1421, 14.1421, -20, 1.22461e-15, 20, -20, -14.1421, 14.1421, -20, -20, 2.44921e-15, -20, -14.1421, -14.1421, -20, -3.67382e-15, -20, -20, 14.1421, -14.1421, -20)
+points = PackedVector3Array(0, 0, 0, 20.0001, 0, -20, 14.1422, 14.1422, -20, 1.22461e-15, 20.0001, -20, -14.1422, 14.1422, -20, -20.0001, 2.44922e-15, -20, -14.1422, -14.1422, -20, -3.67383e-15, -20.0001, -20, 14.1422, -14.1422, -20)
 script = ExtResource("2_5fs12")
 field_of_view = 1.5708
 view_distance = 20.0

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxvnxvqnwvbxs"]
+
+[ext_resource type="Script" uid="uid://bw4aduch6dqaa" path="res://components/doggo/doggo.gd" id="1_doggo"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="2_n5mnr"]
+[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="3_doggo_controller"]
+
+[node name="Doggo" type="Node3D"]
+script = ExtResource("1_doggo")
+max_speed = 8.0
+
+[node name="DoggoPawn" parent="." instance=ExtResource("2_n5mnr")]
+unique_name_in_owner = true
+
+[node name="DoggoController" parent="DoggoPawn" instance=ExtResource("3_doggo_controller")]
+unique_name_in_owner = true

@@ -12,7 +12,6 @@ func _ready() -> void:
 
 	Assure.exists(player_movement)		
 	_pawn = Assure.exists(get_parent() as PlayerPawn)
-
 	
 		
 func _process(_delta:float) -> void:

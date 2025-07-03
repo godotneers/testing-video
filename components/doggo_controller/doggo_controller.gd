@@ -2,9 +2,20 @@
 class_name DoggoController
 extends Node3D
 
-@export var path: Path3D = null
-@export var arrival_distance: float = 0.5
-@export var return_time_after_losing_target: float = 3.0
+@export var path: Path3D = null:
+	set(value):
+		if path == value:
+			return
+		path = value
+		_refresh()
+		
+@export var arrival_distance: float = 0.5:
+	set(value):
+		if is_equal_approx(arrival_distance, value):
+			return
+		arrival_distance = value
+		_refresh()
+		
 
 @onready var _vision_scanner: VisionScanner = Assure.exists(%VisionScanner)
 @onready var _navigation_agent: NavigationAgent3D = Assure.exists(%NavigationAgent3D)
@@ -23,20 +34,27 @@ func _ready() -> void:
 	
 	# prepare navigation
 	_navigation_agent.navigation_finished.connect(func(): _state_chart.send_event("target_reached"))
-	_navigation_agent.target_desired_distance = arrival_distance
 	
 	# Connect vision scanner signals
 	_vision_scanner.target_acquired.connect(func(): _state_chart.send_event("player_seen"))
 	_vision_scanner.target_lost.connect(func(): _state_chart.send_event("player_lost"))
 	_vision_scanner.ignore(_pawn)
 	
+	_refresh()
+	
+func _refresh():
+	if not is_node_ready():
+		return
+		
 	# If we have a path to follow, set it up
 	if is_instance_valid(path) and is_instance_valid(path.curve) and path.curve.point_count > 0:
 		_path_curve = path.curve
 	_state_chart.set_expression_property("has_path", is_instance_valid(_path_curve))
 	
+	_navigation_agent.target_desired_distance = arrival_distance
+	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	

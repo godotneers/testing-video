@@ -53,7 +53,7 @@ func ignore(object:CollisionObject3D):
 	_ray_cast_3d.add_exception(object)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	Assure.exists(_tracked_body)
 	Assure.exists(_target_object)
 	var had_line_of_sight:bool = _has_line_of_sight

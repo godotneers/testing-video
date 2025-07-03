@@ -8,8 +8,6 @@ extends CharacterBody3D
 ## Turn speed per second.
 @export_range(1, 720, 1.0, "or_greater", "radians_as_degrees") var turn_speed:float = TAU
 
-## Jump height
-@export var jump_height:float = 2
 
 var forward:Vector3:
 	get: return -transform.basis.z
