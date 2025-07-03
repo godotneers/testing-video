@@ -12,6 +12,7 @@ radius = 1.0
 
 [node name="PlayerPawn" type="CharacterBody3D" groups=["player"]]
 collision_layer = 16
+floor_max_angle = 0.872665
 script = ExtResource("1_hxcsb")
 turn_speed = 12.5664
 
@@ -78,7 +79,8 @@ external_skeleton = NodePath("../mr_g/Armature/Skeleton3D")
 [node name="Torch" parent="Model/HandAttachment" instance=ExtResource("5_pgcb8")]
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 3.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929325, 0)
+radius = 1.0
 avoidance_layers = 16
 
 [editable path="Model/mr_g"]

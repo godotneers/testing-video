@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbmimwt64bivt"]
+
+[ext_resource type="Script" uid="uid://hj1emni4avif" path="res://components/large_trigger_plate/large_trigger_plate.gd" id="1_y0qc8"]
+[ext_resource type="Script" uid="uid://t0rwine8jw2d" path="res://components/pitch_shifting_audio_player/pitch_shifting_audio_player.gd" id="2_yh823"]
+[ext_resource type="AudioStream" uid="uid://wrcnebqdherh" path="res://sfx/slide.ogg" id="3_r8uyk"]
+[ext_resource type="PackedScene" uid="uid://cwden7ymqjh7e" path="res://components/large_trigger_plate/large_trigger_plate.blend" id="4_ymdia"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0qc8"]
+size = Vector3(4, 2, 4)
+
+[node name="LargeTriggerPlate" type="Node3D"]
+script = ExtResource("1_y0qc8")
+
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 48
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31641, 0)
+shape = SubResource("BoxShape3D_y0qc8")
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_r8uyk")
+script = ExtResource("2_yh823")
+
+[node name="LargeTriggerPlate" parent="." instance=ExtResource("4_ymdia")]
+unique_name_in_owner = true

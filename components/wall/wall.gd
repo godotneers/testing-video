@@ -1,7 +1,16 @@
 @tool
 extends Node3D
 
+@export var affect_nav_mesh:bool = true:
+	set(value):
+		affect_nav_mesh = value
+		if affect_nav_mesh:
+			add_to_group("nav_mesh")
+		else:
+			remove_from_group("navmesh")
+			
 @onready var _box: CSGBox3D = %Box
+
 
 @export var length:float = 5:
 	set(value):

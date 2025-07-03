@@ -2,6 +2,9 @@
 class_name TestIndicator
 extends Node3D
 
+signal turned_on()
+signal turned_off()
+
 @onready var _label:Label3D = Assure.exists(%Label3D as Label3D)
 var _material:StandardMaterial3D
 
@@ -17,12 +20,17 @@ var _material:StandardMaterial3D
 		
 @export var is_on:bool = false:
 	set(value):
+		if value == is_on:
+			return
+			
 		is_on = value
 		if is_on:
 			_current_color = color
+			turned_on.emit()
 		else:
 			_current_color = Color.BLACK	
-		_refresh()
+			turned_off.emit()
+			
 
 var _current_color:Color = color if is_on else Color.BLACK
 
@@ -40,6 +48,9 @@ func turn_on():
 	
 func turn_off():
 	is_on = false
+	
+func change_to(value:bool):
+	is_on = value
 	
 func _refresh():
 	if not is_node_ready():

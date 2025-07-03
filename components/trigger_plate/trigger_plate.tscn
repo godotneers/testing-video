@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://v7jhkhim0lok"]
 
 [ext_resource type="Script" uid="uid://bukx7wngywwu1" path="res://components/trigger_plate/trigger_plate.gd" id="1_vqcvh"]
-[ext_resource type="Script" uid="uid://t0rwine8jw2d" path="res://components/trigger_plate/pitch_shifter.gd" id="2_armqg"]
+[ext_resource type="Script" uid="uid://t0rwine8jw2d" path="res://components/pitch_shifting_audio_player/pitch_shifting_audio_player.gd" id="2_armqg"]
 [ext_resource type="AudioStream" uid="uid://wrcnebqdherh" path="res://sfx/slide.ogg" id="3_q51qr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_52v10"]

@@ -4,6 +4,7 @@
 
 [node name="Wall" type="Node3D" groups=["navmesh"]]
 script = ExtResource("1_fs7kv")
+affect_nav_mesh = null
 
 [node name="Box" type="CSGBox3D" parent="."]
 unique_name_in_owner = true

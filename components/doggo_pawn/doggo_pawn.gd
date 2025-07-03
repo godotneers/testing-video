@@ -1,7 +1,7 @@
 class_name DoggoPawn
 extends Pawn
 
-@onready var _animation_tree:AnimationTree = Assure.exists(%AnimationTree)
+@onready var _animation_tree:AnimationTree = Assure.exists(%AnimationTree as AnimationTree)
 @onready var _animation_state_machine:AnimationNodeStateMachinePlayback = \
 	Assure.exists(_animation_tree["parameters/playback"])
 

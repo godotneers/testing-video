@@ -1,6 +1,5 @@
-extends GdUnitTestSuite
+extends TestBase
 
-var _runner:GdUnitSceneRunner
 var _point1:TestArea
 var _point2:TestArea
 var _point3:TestArea
@@ -10,14 +9,13 @@ var _player_controller:TestPlayerController
 
 
 func before_test():
-	_runner = scene_runner("uid://coc0qn5voafpo")
-	_runner.set_time_factor(5)
-	_point1 = Assure.exists(_runner.find_child("Point1") as TestArea)
-	_point2 = Assure.exists(_runner.find_child("Point2") as TestArea)
-	_point3 = Assure.exists(_runner.find_child("Point3") as TestArea)
-	_point4 = Assure.exists(_runner.find_child("Point4") as TestArea)
-	_player_pos = Assure.exists(_runner.find_child("PlayerPos") as TestArea)
-	_player_controller = Assure.exists(_runner.find_child("TestPlayerController") as TestPlayerController)
+	load_scene("uid://coc0qn5voafpo")
+	_point1 = find_area("Point1")
+	_point2 = find_area("Point2")
+	_point3 = find_area("Point3")
+	_point4 = find_area("Point4")
+	_player_pos = find_area("PlayerPos")
+	_player_controller = find_player_controller()
 
 func test_doggo_walks_path():
 	monitor_signals(_point1)
@@ -34,12 +32,8 @@ func test_doggo_prioritizes_walking_to_player():
 	monitor_signals(_point1)
 	monitor_signals(_player_pos)
 	
-	# Wait till doggo reaches first point, from there 
-	# it should get a vision of the player.
-	await assert_signal(_point1).wait_until(5000).is_emitted("occupied")	
-	
-	# telport player
-	_player_controller.teleport_to(_player_pos.global_position)
+	# move player so doggo can see it
+	await _player_controller.move_to(_player_pos.global_position)
 	
 	# doggo should move to the player area now
 	await assert_signal(_player_pos).wait_until(5000).is_emitted("occupied")	

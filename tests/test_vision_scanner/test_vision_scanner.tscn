@@ -30,6 +30,7 @@ transform = Transform3D(-0.448514, -0.511341, 0.733051, 0, 0.820174, 0.572114, -
 
 [node name="Wall" parent="." instance=ExtResource("5_al6vk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.653, 0, 4.55111)
+affect_nav_mesh = null
 
 [node name="StartPoint" parent="." instance=ExtResource("7_h60qy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)

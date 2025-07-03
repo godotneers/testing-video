@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://seyqrl7p6kpk"]
+[gd_scene load_steps=5 format=3 uid="uid://seyqrl7p6kpk"]
 
 [ext_resource type="Script" uid="uid://cff7mro772dus" path="res://components/player_controller/player_controller.gd" id="1_gh12t"]
 [ext_resource type="PackedScene" uid="uid://brsyy0hbjk5a8" path="res://components/camera/camera.tscn" id="2_8ibnc"]
 [ext_resource type="Resource" uid="uid://dg8cfl1mj53x8" path="res://input/player_movement.tres" id="2_m8o0o"]
+[ext_resource type="PackedScene" uid="uid://bhf7o3ovjlegw" path="res://components/code_wheel/code_wheel.tscn" id="4_m8o0o"]
 
 [node name="PlayerController" type="Node3D"]
 script = ExtResource("1_gh12t")
@@ -11,3 +12,19 @@ player_movement = ExtResource("2_m8o0o")
 [node name="Camera" parent="." instance=ExtResource("2_8ibnc")]
 unique_name_in_owner = true
 top_level = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CodeWheel" parent="CanvasLayer" instance=ExtResource("4_m8o0o")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -114.0
+offset_right = 317.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2

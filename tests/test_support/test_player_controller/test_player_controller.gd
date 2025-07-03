@@ -25,8 +25,8 @@ func teleport_to(location:Vector3):
 	
 func _physics_process(delta: float) -> void:
 	if _navigation_agent.is_navigation_finished():
-		_pawn.direction = Vector3.ZERO
+		_pawn.set_desired_direction(Vector3.ZERO)
 		return
 		
 	var position:Vector3 = _navigation_agent.get_next_path_position()
-	_pawn.direction = global_position.direction_to(position)
+	_pawn.set_desired_direction(global_position.direction_to(position))

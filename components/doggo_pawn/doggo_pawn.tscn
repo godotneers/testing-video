@@ -79,6 +79,7 @@ graph_offset = Vector2(45, -39.586)
 
 [node name="DoggoPawn" type="CharacterBody3D"]
 collision_layer = 32
+floor_max_angle = 1.22173
 script = ExtResource("1_yjnqm")
 max_speed = 5.0
 

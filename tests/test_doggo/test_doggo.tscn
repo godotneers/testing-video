@@ -21,6 +21,7 @@ point_count = 4
 
 [node name="Wall" parent="." instance=ExtResource("2_07q3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94697, 0, 10.3565)
+affect_nav_mesh = null
 
 [node name="DoggoPawn" parent="." groups=["doggo"] instance=ExtResource("3_ktfkp")]
 transform = Transform3D(-0.99846, 0, 0.0554729, 0, 1, 0, -0.0554729, 0, -0.99846, -1.94697, 0, -8.16071)
@@ -34,27 +35,33 @@ curve = SubResource("Curve3D_pgwuc")
 
 [node name="Point1" parent="." instance=ExtResource("5_01qb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52774, 0, -4.28813)
+collision_mask = 32
 text = "1"
 groups = Array[StringName]([&"doggo"])
 
 [node name="Point2" parent="." instance=ExtResource("5_01qb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3784, 0, -4.28813)
+collision_mask = 32
 text = "2"
 groups = Array[StringName]([&"doggo"])
 
 [node name="Point3" parent="." instance=ExtResource("5_01qb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3784, 0, -11.6908)
+collision_mask = 32
 text = "3"
 groups = Array[StringName]([&"doggo"])
 
 [node name="Point4" parent="." instance=ExtResource("5_01qb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4826, 0, -11.6908)
+collision_mask = 32
 text = "4"
 groups = Array[StringName]([&"doggo"])
 
 [node name="PlayerPos" parent="." instance=ExtResource("5_01qb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.305, 0, 6.86764)
-radius = 3.0
+collision_layer = 0
+collision_mask = 32
+radius = 5.0
 text = "4"
 groups = Array[StringName]([&"doggo"])
 

@@ -2,21 +2,17 @@
 extends Node3D
 
 @export var player_movement:GUIDEAction
-@onready var _camera: Camera = %Camera
+@onready var _camera: Camera = Assure.exists(%Camera as Camera)
 
 var _pawn:PlayerPawn
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-		
-	var parent:Node = get_parent()
 
-	if not (parent is PlayerPawn):
-		push_error("Player controller must be attached to a player pawn.")
-		queue_free()
-			
-	_pawn = parent		
+	Assure.exists(player_movement)		
+	_pawn = Assure.exists(get_parent() as PlayerPawn)
+
 	
 		
 func _process(_delta:float) -> void:

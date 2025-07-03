@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://xjpjo2cbij4j"]
+
+[ext_resource type="PackedScene" uid="uid://cc6i4eii4thwu" path="res://tests/test_support/test_lab/test_lab.tscn" id="1_74lud"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="2_pmoac"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="3_t04bh"]
+[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="4_syyqc"]
+[ext_resource type="PackedScene" uid="uid://cpqlgyyvht2q1" path="res://tests/test_support/test_area/test_area.tscn" id="5_asry5"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="6_snp6t"]
+[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://components/large_trigger_plate/large_trigger_plate.tscn" id="7_m58ie"]
+[ext_resource type="PackedScene" uid="uid://c8su35f66ctid" path="res://tests/test_support/test_player_controller/test_player_controller.tscn" id="7_ocmkv"]
+[ext_resource type="PackedScene" uid="uid://ddb7l644pgjl3" path="res://tests/test_support/test_indicator/test_indicator.tscn" id="9_14kb8"]
+
+[node name="TestLargeTriggerPlate" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.389097, -0.490943, 0.779473, 0, 0.846153, 0.532941, -0.921197, 0.207366, -0.329235, 17.9721, 10.2006, -8.74908)
+
+[node name="TestLab" parent="." instance=ExtResource("1_74lud")]
+
+[node name="Wall" parent="." instance=ExtResource("2_pmoac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2987, 0, -7.02794)
+affect_nav_mesh = true
+length = 10.0
+
+[node name="DoggoPawn" parent="." groups=["doggo"] instance=ExtResource("3_t04bh")]
+transform = Transform3D(-0.0554729, 0, -0.99846, 0, 1, 0, 0.99846, 0, -0.0554729, 1.94489, 0, -11.3484)
+
+[node name="DoggoController" parent="DoggoPawn" instance=ExtResource("4_syyqc")]
+transform = Transform3D(0.999895, 0.0143574, -0.00188728, -0.0143574, 0.965926, -0.25842, -0.00188728, 0.25842, 0.966031, 0, 0, 0)
+
+[node name="PlayerPawn" parent="." instance=ExtResource("6_snp6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.09975, 0, 8.29037)
+
+[node name="TestPlayerController" parent="PlayerPawn" instance=ExtResource("7_ocmkv")]
+
+[node name="LargeTriggerPlate" parent="." instance=ExtResource("7_m58ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83911, 0, 0.290229)
+
+[node name="DoggoPickup" parent="." instance=ExtResource("5_asry5")]
+transform = Transform3D(-0.0554729, 0, -0.99846, 0, 1, 0, 0.99846, 0, -0.0554729, 6.98314, 0, -11.2136)
+collision_layer = 0
+collision_mask = 48
+text = "DoggoPickup"
+
+[node name="PressedIndicator" parent="." instance=ExtResource("9_14kb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.157, 0, 0.43441)
+text = "Pressed"
+
+[connection signal="pressed" from="LargeTriggerPlate" to="PressedIndicator" method="turn_on"]
+[connection signal="released" from="LargeTriggerPlate" to="PressedIndicator" method="turn_off"]

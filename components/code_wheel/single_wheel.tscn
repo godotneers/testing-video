@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhcdot5twa1ke"]
+
+[ext_resource type="Script" uid="uid://bephqtbj3mqve" path="res://components/code_wheel/single_wheel.gd" id="1_bvrsj"]
+[ext_resource type="Texture2D" uid="uid://cslf45qbt3y72" path="res://icon.svg" id="1_nxd0e"]
+[ext_resource type="Texture2D" uid="uid://bjwig5fjo64wg" path="res://components/code_wheel/wheel.png" id="3_3ooee"]
+[ext_resource type="Texture2D" uid="uid://dpnsge61pwtcx" path="res://components/code_wheel/triangle.png" id="3_lcfr1"]
+[ext_resource type="Texture2D" uid="uid://slt54osk5g8" path="res://components/code_wheel/quad.png" id="4_3ooee"]
+[ext_resource type="Texture2D" uid="uid://x3kssi1pndfr" path="res://components/code_wheel/pentagon.png" id="5_5tsht"]
+[ext_resource type="Texture2D" uid="uid://bcct3yt11cvoa" path="res://components/code_wheel/hexagon.png" id="6_s8g1y"]
+
+[node name="SingleWheel" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+flat = true
+script = ExtResource("1_bvrsj")
+rotation_duration_seconds = 0.8
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_children = 1
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_vertical = 0
+texture = ExtResource("1_nxd0e")
+
+[node name="Center" type="Node2D" parent="TextureRect"]
+unique_name_in_owner = true
+position = Vector2(64, 192)
+
+[node name="Wheel" type="Sprite2D" parent="TextureRect/Center"]
+texture = ExtResource("3_3ooee")
+
+[node name="Triangle" type="Sprite2D" parent="TextureRect/Center"]
+self_modulate = Color(1, 1, 1, 0.764706)
+position = Vector2(0, -128)
+texture = ExtResource("3_lcfr1")
+
+[node name="Quad" type="Sprite2D" parent="TextureRect/Center"]
+self_modulate = Color(1, 1, 1, 0.764706)
+position = Vector2(128, 0)
+rotation = 1.5708
+texture = ExtResource("4_3ooee")
+
+[node name="Pentagon" type="Sprite2D" parent="TextureRect/Center"]
+self_modulate = Color(1, 1, 1, 0.764706)
+position = Vector2(0, 128)
+rotation = 3.14159
+texture = ExtResource("5_5tsht")
+
+[node name="Bestagon" type="Sprite2D" parent="TextureRect/Center"]
+self_modulate = Color(1, 1, 1, 0.764706)
+position = Vector2(-128, 0)
+rotation = 4.71239
+texture = ExtResource("6_s8g1y")

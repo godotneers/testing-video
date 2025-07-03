@@ -68,10 +68,12 @@ func _on_follow_player_state_exited():
 	# we no longer follow the player, so make the pawn no longer
 	# attentive
 	_pawn.attentive = false
+	_pawn.prefer_to_look_at(Vector3.INF)
 
 
 func _on_navigate_to_player_state_entered() -> void:
 	_navigation_agent.target_position = _vision_scanner.last_known_position
+	_pawn.prefer_to_look_at(_vision_scanner.last_known_position)
 	_state_chart.send_event("target_acquired")
 		
 		
@@ -91,3 +93,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 		result.append("Doggo controller should not have an offset to the doggo pawn.")
 	
 	return result
+
+
+func _on_player_seen_state_entered() -> void:
+	_state_chart.send_event("follow_player")
+
+func _on_player_hidden_state_entered() -> void:
+	_state_chart.send_event("abandon_player")
