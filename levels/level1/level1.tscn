@@ -1,17 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://bu0i0bw2bdi0v"]
+[gd_scene load_steps=17 format=3 uid="uid://bu0i0bw2bdi0v"]
 
-[ext_resource type="PackedScene" uid="uid://dds0dfw14j1in" path="res://components/input_manager/input_manager.tscn" id="1_ttjls"]
+[ext_resource type="Script" uid="uid://bcgfwy4huysu3" path="res://components/level/level.gd" id="1_ixnqm"]
 [ext_resource type="PackedScene" uid="uid://c0liliyx8wsvv" path="res://components/torch/wall_torch.tscn" id="2_gc8my"]
+[ext_resource type="PackedScene" uid="uid://dds0dfw14j1in" path="res://components/input_manager/input_manager.tscn" id="2_ttjls"]
 [ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="3_aj31r"]
 [ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="4_uflgq"]
 [ext_resource type="PackedScene" uid="uid://seyqrl7p6kpk" path="res://components/player_controller/player_controller.tscn" id="5_e2gyc"]
 [ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://components/trigger_plate/trigger_plate.tscn" id="6_wsno3"]
 [ext_resource type="Script" uid="uid://046yasokxlji" path="res://components/thing_mover/thing_mover.gd" id="7_sgvry"]
-[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="8_la5y6"]
 [ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="9_3k617"]
 [ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="10_jhqhn"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="11_ddtso"]
-[ext_resource type="PackedScene" uid="uid://bxnqvnwvs8yjr" path="res://components/bone/bone.tscn" id="12_f7y8c"]
 [ext_resource type="PackedScene" uid="uid://bxnqvs8yvjnkw" path="res://components/exit_gate/exit_gate.tscn" id="13_xc23s"]
 [ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://components/large_trigger_plate/large_trigger_plate.tscn" id="14_n5g8f"]
 
@@ -40,8 +38,9 @@ _data = {
 point_count = 4
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_ixnqm")
 
-[node name="InputManager" parent="." instance=ExtResource("1_ttjls")]
+[node name="InputManager" parent="." instance=ExtResource("2_ttjls")]
 
 [node name="Navigation" type="Node" parent="."]
 
@@ -103,20 +102,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08163, 0)
 [node name="TriggerPlate" parent="." instance=ExtResource("6_wsno3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.243, -0.09061, 2.26268)
 
-[node name="MovableWall" parent="." instance=ExtResource("3_aj31r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
-affect_nav_mesh = true
-length = 10.0
-
-[node name="ThingMover" type="Node3D" parent="."]
+[node name="WallMover" type="Node3D" parent="."]
 script = ExtResource("7_sgvry")
 target = NodePath("../MovableWall")
 start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
 end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -4.30497, -8.55579)
 metadata/_custom_type_script = "uid://046yasokxlji"
 
-[node name="GuideDebugger" parent="." instance=ExtResource("8_la5y6")]
-visible = false
+[node name="MovableWall" parent="." instance=ExtResource("3_aj31r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+affect_nav_mesh = true
+length = 10.0
+
+[node name="ExitGateThingMover" type="Node3D" parent="."]
+script = ExtResource("7_sgvry")
+target = NodePath("../ExitGate")
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, 0, 8.05726)
+metadata/_custom_type_script = "uid://046yasokxlji"
+
+[node name="ExitGate" parent="." instance=ExtResource("13_xc23s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
 
 [node name="DoggoPawn" parent="." instance=ExtResource("9_3k617")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.747, 0.0230365, -12.1346)
@@ -127,21 +133,11 @@ path = NodePath("../../Path3D")
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_jhqhn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("11_ddtso")]
-offset_right = -1372.0
-offset_bottom = -548.0
-initial_node_to_watch = NodePath("../../DoggoPawn/DoggoController")
-
-[node name="Bone" parent="." instance=ExtResource("12_f7y8c")]
-
-[node name="ExitGate" parent="." instance=ExtResource("13_xc23s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, 0, 8.05726)
-
 [node name="LargeTriggerPlate" parent="." instance=ExtResource("14_n5g8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15477, 0, 0)
 
-[connection signal="state_changed" from="TriggerPlate" to="ThingMover" method="run" unbinds=1]
-[connection signal="arrived_at_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
-[connection signal="departed_from_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]
+[connection signal="state_changed" from="TriggerPlate" to="WallMover" method="run" unbinds=1]
+[connection signal="arrived_at_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
+[connection signal="departed_from_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]
+[connection signal="player_entered" from="ExitGate" to="." method="emit_level_finished"]
+[connection signal="pressed" from="LargeTriggerPlate" to="ExitGateThingMover" method="run_once"]

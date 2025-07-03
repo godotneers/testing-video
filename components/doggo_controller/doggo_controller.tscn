@@ -25,9 +25,6 @@ path_height_offset = 0.5
 avoidance_enabled = true
 avoidance_layers = 0
 avoidance_mask = 16
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_point_size = 6.16
 
 [node name="VisionScanner" parent="." instance=ExtResource("2_vision_scanner")]
 unique_name_in_owner = true
