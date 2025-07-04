@@ -52,45 +52,56 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_t8p08")
 size = Vector2(0.2, 0.2)
 
-[node name="Bone" type="StaticBody3D"]
-collision_layer = 64
-collision_mask = 0
+[node name="Bone" type="Node3D" groups=["bone"]]
 script = ExtResource("1_yvnqe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_owkfq")
 
-[node name="BoneCSG" type="CSGCombiner3D" parent="."]
+[node name="DroppedTransform" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.993278, 0, -0.115751, 0, 1, 0, 0.115751, 0, 0.993278, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="BoneMiddle" type="CSGCylinder3D" parent="BoneCSG"]
+[node name="BoneCSG" type="CSGCombiner3D" parent="DroppedTransform"]
+unique_name_in_owner = true
+transform = Transform3D(-0.555329, 0, 0.831614, 0, 1, 0, -0.831614, 0, -0.555329, 0, 0, 0)
+
+[node name="BoneMiddle" type="CSGCylinder3D" parent="DroppedTransform/BoneCSG"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 radius = 0.05
 height = 0.5
 material = SubResource("StandardMaterial3D_lfgxr")
 
-[node name="BoneEnd1" type="CSGSphere3D" parent="BoneCSG"]
+[node name="BoneEnd1" type="CSGSphere3D" parent="DroppedTransform/BoneCSG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
 radius = 0.1
 material = SubResource("StandardMaterial3D_lfgxr")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="BoneCSG/BoneEnd1"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DroppedTransform/BoneCSG/BoneEnd1"]
 amount = 25
 lifetime = 2.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_sdbes")
 draw_pass_1 = SubResource("QuadMesh_yp16x")
 
-[node name="BoneEnd2" type="CSGSphere3D" parent="BoneCSG"]
+[node name="BoneEnd2" type="CSGSphere3D" parent="DroppedTransform/BoneCSG"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
 radius = 0.1
 material = SubResource("StandardMaterial3D_lfgxr")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="BoneCSG/BoneEnd2"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DroppedTransform/BoneCSG/BoneEnd2"]
 amount = 25
 lifetime = 2.0
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_sdbes")
 draw_pass_1 = SubResource("QuadMesh_yp16x")
+
+[node name="PickedUpTransform" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.259862, 0)

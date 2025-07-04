@@ -3,12 +3,15 @@
 [ext_resource type="Script" uid="uid://ctexmfxwjxh3b" path="res://components/player_pawn/player_pawn.gd" id="1_hxcsb"]
 [ext_resource type="PackedScene" uid="uid://4kb86lxbov4v" path="res://components/player_pawn/mr.g.glb" id="3_jtlup"]
 [ext_resource type="AnimationLibrary" uid="uid://cuab1mufnl3rd" path="res://components/player_pawn/player_animations.tres" id="4_ftnur"]
-[ext_resource type="PackedScene" uid="uid://dd2svidmn78r1" path="res://components/torch/torch.tscn" id="5_pgcb8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ypl5u"]
 radius = 1.0
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_twc2s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pickup"]
+radius = 2.0
+height = 4.0
 
 [node name="PlayerPawn" type="CharacterBody3D" groups=["player"]]
 collision_layer = 16
@@ -76,11 +79,19 @@ bone_idx = 16
 use_external_skeleton = true
 external_skeleton = NodePath("../mr_g/Armature/Skeleton3D")
 
-[node name="Torch" parent="Model/HandAttachment" instance=ExtResource("5_pgcb8")]
-
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929325, 0)
 radius = 1.0
 avoidance_layers = 16
+
+[node name="PickupDetectionArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupDetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("CapsuleShape3D_pickup")
 
 [editable path="Model/mr_g"]
