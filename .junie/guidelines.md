@@ -1,6 +1,6 @@
 ﻿
 ## Generic code guidelines
-Always add GDScript type hints everywhere. When doing null checks use `is_instance_valid(object)` rather than `object != null`. GDScripts should always end with an empty line. All `@onready` variables are private and need to start with an underscore. For constructs, that refer to other code, always use the type-safe variant without strings, e.g:
+Always use tabs for indentation. Always add GDScript type hints everywhere. When doing null checks use `is_instance_valid(object)` rather than `object != null`. GDScripts should always end with an empty line. All `@onready` variables are private and need to start with an underscore. For constructs, that refer to other code, always use the type-safe variant without strings, e.g:
 
 - `my_signal.emit()` rather than `emit_signal("my_signal")`
 - `foo.some_signal.connect(_on_foo_some_signal)` rather than `foo.connect("some_signal", self, "_on_foo_some_signal")`

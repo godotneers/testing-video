@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bcgfwy4huysu3" path="res://components/level/level.gd" id="1_ixnqm"]
 [ext_resource type="PackedScene" uid="uid://c0liliyx8wsvv" path="res://components/torch/wall_torch.tscn" id="2_gc8my"]
+[ext_resource type="PackedScene" uid="uid://beer7ipemffei" path="res://components/room/room.tscn" id="2_jhqhn"]
 [ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="3_aj31r"]
 [ext_resource type="PackedScene" uid="uid://c8yawpvyuq5gx" path="res://components/player/player.tscn" id="4_player"]
 [ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://components/trigger_plate/trigger_plate.tscn" id="6_wsno3"]
@@ -18,9 +19,6 @@ geometry_source_group_name = &"navmesh"
 agent_radius = 1.0
 agent_max_slope = 50.0
 filter_ledge_spans = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5m4"]
-albedo_color = Color(0.172549, 0.164706, 0.156863, 1)
 
 [sub_resource type="Environment" id="Environment_f3sb7"]
 background_mode = 1
@@ -50,17 +48,8 @@ end_position = Vector3(-0.388883, 0, 4.08356)
 
 [node name="Static" type="Node" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Static" groups=["navmesh"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-use_collision = true
-size = Vector3(40, 5, 40)
-material = SubResource("StandardMaterial3D_gv5m4")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Static/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-operation = 2
-use_collision = true
-size = Vector3(38, 5, 38)
+[node name="Room" parent="Static" instance=ExtResource("2_jhqhn")]
+room_size = Vector2(38, 38)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Static"]
 environment = SubResource("Environment_f3sb7")

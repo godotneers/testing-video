@@ -59,10 +59,8 @@ func run():
 		return
 	
 	if _at_start:
-		print("departed from start")
 		departed_from_start.emit()
 	else:
-		print("delaprted from end")
 		departed_from_end.emit()
 		
 	_at_start = not _at_start

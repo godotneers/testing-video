@@ -44,6 +44,7 @@ ui/toolbar/run_overall=true
 player=""
 navmesh=""
 bone=""
+interactable=""
 
 [godot_resource_groups]
 
@@ -54,4 +55,4 @@ auto_rebuild=true
 3d_physics/layer_1="World"
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Doggos"
-3d_physics/layer_7="Pickups"
+3d_physics/layer_7="PickupsInteractables"

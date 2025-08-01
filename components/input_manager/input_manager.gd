@@ -10,7 +10,6 @@ func _ready() -> void:
 		return
 
 	GUIDE.enable_mapping_context(mapping_context)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	toggle_mouse.triggered.connect(_toggle_mouse)
 

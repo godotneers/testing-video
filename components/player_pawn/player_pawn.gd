@@ -9,33 +9,45 @@ signal pickup_detected(pickup: Pickup)
 ## @param pickup: The pickup that was lost
 signal pickup_lost(pickup: Pickup)
 
+## Signal emitted when an interactable is detected
+## @param interactable: The interactable that was detected
+signal interactable_detected(interactable: Interactable)
+
+## Signal emitted when an interactable is no longer detected
+## @param interactable: The interactable that was lost
+signal interactable_lost(interactable: Interactable)
+
 ## The currently held pickup
 var held_pickup: Pickup:
 	get:
 		return _held_pickup
 
-@onready var _pickup_detection_area: Area3D = Assure.exists(%PickupDetectionArea as Area3D)
+@onready var _detection_area: Area3D = Assure.exists(%DetectionArea as Area3D)
 @onready var _hand_attachment: BoneAttachment3D = Assure.exists(%HandAttachment as BoneAttachment3D)
 
 var _held_pickup: Pickup = null
 
 func _ready() -> void:
-	_pickup_detection_area.area_entered.connect(_on_pickup_detection_area_entered)
-	_pickup_detection_area.area_exited.connect(_on_pickup_detection_area_exited)
+	_detection_area.area_entered.connect(_on_detection_area_entered)
+	_detection_area.area_exited.connect(_on_detection_area_exited)
 
-## Called when an area enters the pickup detection area
-## @param area: The area that entered the pickup detection area
-func _on_pickup_detection_area_entered(area: Area3D) -> void:
-	var potential_pickup:Node = area.owner
-	if potential_pickup is Pickup:
-		pickup_detected.emit(potential_pickup)
+## Called when an area enters the detection area
+## @param area: The area that entered the detection area
+func _on_detection_area_entered(area: Area3D) -> void:
+	var owner_node: Node = area.owner
+	if owner_node is Pickup:
+		pickup_detected.emit(owner_node)
+	if owner_node is Interactable:
+		interactable_detected.emit(owner_node)
 
-## Called when an area exits the pickup detection area
-## @param area: The area that exited the pickup detection area
-func _on_pickup_detection_area_exited(area: Area3D) -> void:
-	var potential_pickup:Node = area.owner
-	if potential_pickup is Pickup:
-		pickup_lost.emit(potential_pickup)
+## Called when an area exits the detection area
+## @param area: The area that exited the detection area
+func _on_detection_area_exited(area: Area3D) -> void:
+	var owner_node: Node = area.owner
+	if owner_node is Pickup:
+		pickup_lost.emit(owner_node)
+	if owner_node is Interactable:
+		interactable_lost.emit(owner_node)
 
 ## Picks up the specified pickup
 ## If the player is already holding a pickup, the current pickup will be dropped first

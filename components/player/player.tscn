@@ -9,6 +9,8 @@ script = ExtResource("1_player")
 
 [node name="PlayerPawn" parent="." instance=ExtResource("2_player_pawn")]
 unique_name_in_owner = true
+max_speed = null
 
 [node name="PlayerController" parent="PlayerPawn" instance=ExtResource("3_player_controller")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03364, 0)

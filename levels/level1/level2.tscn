@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=3 uid="uid://sjnde1fibmso"]
+
+[ext_resource type="Script" uid="uid://bcgfwy4huysu3" path="res://components/level/level.gd" id="1_syulk"]
+[ext_resource type="PackedScene" uid="uid://c0liliyx8wsvv" path="res://components/torch/wall_torch.tscn" id="2_0q4fe"]
+[ext_resource type="PackedScene" uid="uid://beer7ipemffei" path="res://components/room/room.tscn" id="3_7x4ev"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="3_qmxmt"]
+[ext_resource type="PackedScene" uid="uid://c8yawpvyuq5gx" path="res://components/player/player.tscn" id="4_7x4ev"]
+[ext_resource type="PackedScene" uid="uid://bxnqvs8yvjnkw" path="res://components/exit_gate/exit_gate.tscn" id="7_5lsy8"]
+[ext_resource type="PackedScene" uid="uid://bkqdelq0ggow3" path="res://components/thing_mover/thing_mover.tscn" id="7_14nl5"]
+[ext_resource type="Texture2D" uid="uid://bcct3yt11cvoa" path="res://components/code_wheel/hexagon.png" id="8_0q4fe"]
+[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://components/large_trigger_plate/large_trigger_plate.tscn" id="9_l1d4y"]
+[ext_resource type="Texture2D" uid="uid://dpnsge61pwtcx" path="res://components/code_wheel/triangle.png" id="9_qmxmt"]
+[ext_resource type="Texture2D" uid="uid://slt54osk5g8" path="res://components/code_wheel/quad.png" id="10_7x4ev"]
+[ext_resource type="PackedScene" uid="uid://c7nc0u4a1c682" path="res://components/pedestal/pedestal.tscn" id="12_7x4ev"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ttjls"]
+vertices = PackedVector3Array(-11.25, 0.5, -11.25, -11.25, 0.5, -4.5, -10.5, 0.5, -4, 11.5, 0.5, -11.25, -10.5, 0.5, 1.75, -11.25, 0.5, 2.25, -11.25, 0.5, 11.5, 11.5, 0.5, 11.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 7)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navmesh"
+agent_radius = 1.0
+agent_max_slope = 50.0
+filter_ledge_spans = true
+
+[sub_resource type="Environment" id="Environment_f3sb7"]
+background_mode = 1
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+
+[sub_resource type="Curve3D" id="Curve3D_jhqhn"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 16.597, 0, -17.481, 0, 0, 0, 0, 0, 0, 18.0656, 0, -9.75919, 0, 0, 0, 0, 0, 0, 11.6043, 0, -9.72395, 0, 0, 0, 0, 0, 0, 12.297, 0, -17.2731),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_syulk")
+
+[node name="Navigation" type="Node" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("NavigationMesh_ttjls")
+metadata/_edit_lock_ = true
+
+[node name="Static" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Static"]
+environment = SubResource("Environment_f3sb7")
+
+[node name="WallTorch" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0008, 2.91619, 7.6978)
+
+[node name="WallTorch2" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0008, 2.91619, -10.7896)
+
+[node name="WallTorch7" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16.5373, 1.51547, 1.47578)
+visible = false
+
+[node name="WallTorch3" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.27255, 2.91619, -12.6369)
+
+[node name="WallTorch4" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.61098, 2.91619, 12.5319)
+
+[node name="WallTorch5" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.5474, 2.91619, -7.76627)
+
+[node name="WallTorch6" parent="Static" instance=ExtResource("2_0q4fe")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 12.578, 2.91619, 4.78966)
+
+[node name="Room" parent="Static" instance=ExtResource("3_7x4ev")]
+room_size = Vector2(25, 25)
+
+[node name="Player" parent="." instance=ExtResource("4_7x4ev")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.213, 0, -6.661)
+turn_speed = 12.5664
+
+[node name="ExitGate" parent="." instance=ExtResource("7_5lsy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9551, 0, 11.0814)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_jhqhn")
+
+[node name="LargeTriggerPlate" parent="." instance=ExtResource("9_l1d4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52717, -4.76837e-07, -1.00652)
+minimum_entity_count = 1
+
+[node name="ThingMoverCodeReveal" parent="." instance=ExtResource("7_14nl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7027, -1.90735e-06, -4.24214)
+target = NodePath("../Door")
+start_transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.4729, -4.76837e-07, 1.42756)
+end_transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.4729, -4.29013, 1.42756)
+
+[node name="Door" parent="." instance=ExtResource("3_qmxmt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.0341, -4.76837e-07, 1.42756)
+affect_nav_mesh = true
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12.565, 2.31068, 0.279907)
+size = Vector3(1.80273, 2, 1.60254)
+texture_albedo = ExtResource("8_0q4fe")
+
+[node name="Decal2" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -0.866025, -3.78552e-08, 0.5, 0.5, 2.18557e-08, 0.866025, -12.565, 2.31068, -1.42523)
+size = Vector3(1.80273, 2, 1.60254)
+texture_albedo = ExtResource("9_qmxmt")
+
+[node name="Decal3" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12.565, 2.31068, -2.75427)
+size = Vector3(1.80273, 2, 1.60254)
+texture_albedo = ExtResource("10_7x4ev")
+
+[node name="Pedestal" parent="." instance=ExtResource("12_7x4ev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.27908, 0, 3.91293)
+code = "301"
+
+[node name="ThingMoverExitWall" parent="." instance=ExtResource("7_14nl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7027, -1.90735e-06, -4.24214)
+target = NodePath("../ExitWall")
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.26732, 0)
+
+[node name="ExitWall" type="Node3D" parent="."]
+
+[node name="Wall" parent="ExitWall" instance=ExtResource("3_qmxmt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.89632, 0, 8.4266)
+affect_nav_mesh = true
+
+[node name="Wall2" parent="ExitWall" instance=ExtResource("3_qmxmt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.39489, 0, 8.4266)
+affect_nav_mesh = true
+
+[connection signal="player_entered" from="ExitGate" to="." method="emit_level_finished"]
+[connection signal="pressed" from="LargeTriggerPlate" to="ThingMoverCodeReveal" method="run"]
+[connection signal="released" from="LargeTriggerPlate" to="ThingMoverCodeReveal" method="run"]
+[connection signal="code_found" from="Pedestal" to="ThingMoverExitWall" method="run_once"]

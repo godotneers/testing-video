@@ -12,7 +12,7 @@ corner_radius_bottom_left = 20
 
 [node name="CodeWheel" type="MarginContainer"]
 script = ExtResource("1_3qla8")
-value = "320"
+value = "301"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 clip_children = 1
@@ -43,8 +43,8 @@ value = 3
 [node name="Wheel2" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_3qla8")]
 unique_name_in_owner = true
 layout_mode = 2
-value = 2
 
 [node name="Wheel3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_3qla8")]
 unique_name_in_owner = true
 layout_mode = 2
+value = 1

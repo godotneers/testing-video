@@ -84,13 +84,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929325, 0)
 radius = 1.0
 avoidance_layers = 16
 
-[node name="PickupDetectionArea" type="Area3D" parent="."]
+[node name="DetectionArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 64
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupDetectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_pickup")
 
