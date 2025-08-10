@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8yvwpvyqnbxs"]
+
+[ext_resource type="Script" uid="uid://bjxu0uciv6ke1" path="res://game/components/vision_scanner/vision_scanner.gd" id="1_yvnqe"]
+[ext_resource type="Script" uid="uid://c06nyb4r33njc" path="res://game/components/vision_scanner/vision_cone_shape.gd" id="2_5fs12"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5fs12"]
+points = PackedVector3Array(0, 0, 0, 20, 0, -20, 14.1421, 14.1421, -20, 1.22461e-15, 20, -20, -14.1421, 14.1421, -20, -20, 2.44921e-15, -20, -14.1421, -14.1421, -20, -3.67382e-15, -20, -20, 14.1421, -14.1421, -20)
+script = ExtResource("2_5fs12")
+field_of_view = 1.5708
+view_distance = 20.0
+segments = 8
+metadata/_custom_type_script = "uid://c06nyb4r33njc"
+
+[node name="VisionScanner" type="Node3D"]
+script = ExtResource("1_yvnqe")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 80
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0645714)
+shape = SubResource("ConvexPolygonShape3D_5fs12")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+collision_mask = 17
+debug_shape_custom_color = Color(0.520904, 0.886467, 0, 1)
+debug_shape_thickness = 3
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_vision_cone_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_vision_cone_body_exited"]

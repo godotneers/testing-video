@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blnqge37uf06w"]
+
+[ext_resource type="Script" uid="uid://cx6pedr5ibr71" path="res://game/components/player_2d/player_2d.gd" id="1_k37ew"]
+[ext_resource type="Texture2D" uid="uid://bw0vdc56r7wnw" path="res://game/components/player_2d/mrg0000.png" id="1_xb1r0"]
+
+[node name="Player2D" type="CharacterBody2D"]
+script = ExtResource("1_k37ew")
+
+[node name="Mrg0000" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("1_xb1r0")

@@ -35,9 +35,9 @@ enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://a
 
 [gdunit4]
 
-settings/test/test_lookup_folder="tests"
 settings/test/test_discovery=true
 ui/toolbar/run_overall=true
+settings/common/update_notification_enabled=false
 
 [global_group]
 
@@ -45,10 +45,34 @@ player=""
 navmesh=""
 bone=""
 interactable=""
+player_spawn_point=""
 
 [godot_resource_groups]
 
 auto_rebuild=true
+
+[input]
+
+forward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+backward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -56,3 +80,10 @@ auto_rebuild=true
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Doggos"
 3d_physics/layer_7="PickupsInteractables"
+
+[shader_globals]
+
+player_pos={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}

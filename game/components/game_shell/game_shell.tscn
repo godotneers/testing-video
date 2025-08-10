@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8yvwpvyuq5gx"]
+
+[ext_resource type="Script" uid="uid://d3yvwpvyuq5gx" path="res://game/components/game_shell/game_shell.gd" id="1_ixnqm"]
+[ext_resource type="PackedScene" uid="uid://c3ggce4wk2h42" path="res://game/levels/level1.tscn" id="2_bfky5"]
+[ext_resource type="PackedScene" uid="uid://bu0i0bw2bdi0v" path="res://game/levels/level3.tscn" id="4_c8df4"]
+[ext_resource type="PackedScene" uid="uid://c8yawpvyuq5gx" path="res://game/components/player/player.tscn" id="4_kinb1"]
+
+[node name="GameShell" type="Node"]
+script = ExtResource("1_ixnqm")
+levels = Array[PackedScene]([ExtResource("2_bfky5"), ExtResource("4_c8df4"), ExtResource("4_c8df4")])
+player_scene = ExtResource("4_kinb1")
+
+[node name="CurrentLevel" type="Node" parent="."]
+unique_name_in_owner = true

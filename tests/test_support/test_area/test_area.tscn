@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpqlgyyvht2q1"]
 
 [ext_resource type="Script" uid="uid://imbbq8y0xa7e" path="res://tests/test_support/test_area/test_area.gd" id="1_bci4i"]
-[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://textures/dark.png" id="2_lrean"]
+[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://game/textures/dark.png" id="2_lrean"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1sl2"]
 resource_local_to_scene = true

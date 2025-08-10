@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bxnqvnwvs8yjr"]
+
+[ext_resource type="Script" uid="uid://dhuag1ocwohpg" path="res://game/components/bone/bone.gd" id="1_yvnqe"]
+[ext_resource type="Texture2D" uid="uid://c78jcjh8fjndd" path="res://game/components/particles/flamelet_smooth.png" id="2_yvnqe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_owkfq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfgxr"]
+albedo_color = Color(0.921569, 0.921569, 0.878431, 1)
+emission_enabled = true
+emission = Color(0, 0.631373, 1, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="Curve" id="Curve_7ikf0"]
+_data = [Vector2(0, 0), 0.0, 14.6762, 0, 0, Vector2(0.225641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.68952, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tv4yw"]
+curve = SubResource("Curve_7ikf0")
+
+[sub_resource type="Gradient" id="Gradient_o32l1"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8, 1)
+colors = PackedColorArray(0, 0.2, 0.8, 0, 0, 0.4, 1, 1, 0.2, 0.6, 1, 1, 0.4, 0.8, 1, 0.5, 0.6, 0.9, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c47ko"]
+gradient = SubResource("Gradient_o32l1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sdbes"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.05
+initial_velocity_max = 0.1
+gravity = Vector3(0, 0.1, 0)
+damping_min = 0.05
+damping_max = 0.1
+scale_min = 0.1
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_c47ko")
+alpha_curve = SubResource("CurveTexture_tv4yw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8p08"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_yvnqe")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_yp16x"]
+material = SubResource("StandardMaterial3D_t8p08")
+size = Vector2(0.2, 0.2)
+
+[node name="Bone" type="Node3D" groups=["bone"]]
+script = ExtResource("1_yvnqe")
+
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_owkfq")
+
+[node name="DroppedTransform" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="BoneCSG" type="CSGCombiner3D" parent="DroppedTransform"]
+unique_name_in_owner = true
+transform = Transform3D(0.474358, 0, -0.880359, 0, 1, 0, 0.880359, 0, 0.474358, 0, 0, 0)
+
+[node name="BoneMiddle" type="CSGCylinder3D" parent="DroppedTransform/BoneCSG"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+radius = 0.05
+height = 0.5
+material = SubResource("StandardMaterial3D_lfgxr")
+
+[node name="BoneEnd1" type="CSGSphere3D" parent="DroppedTransform/BoneCSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+radius = 0.1
+material = SubResource("StandardMaterial3D_lfgxr")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DroppedTransform/BoneCSG/BoneEnd1"]
+amount = 25
+lifetime = 2.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_sdbes")
+draw_pass_1 = SubResource("QuadMesh_yp16x")
+
+[node name="BoneEnd2" type="CSGSphere3D" parent="DroppedTransform/BoneCSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+radius = 0.1
+material = SubResource("StandardMaterial3D_lfgxr")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DroppedTransform/BoneCSG/BoneEnd2"]
+amount = 25
+lifetime = 2.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_sdbes")
+draw_pass_1 = SubResource("QuadMesh_yp16x")
+
+[node name="PickedUpTransform" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.259862, 0)

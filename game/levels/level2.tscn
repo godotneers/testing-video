@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://bu0i0bw2bdi0v"]
+
+[ext_resource type="Script" uid="uid://bcgfwy4huysu3" path="res://game/components/level/level.gd" id="1_l062r"]
+[ext_resource type="PackedScene" uid="uid://beer7ipemffei" path="res://game/components/room/room.tscn" id="3_bopiy"]
+[ext_resource type="PackedScene" uid="uid://dnkbrgkapchow" path="res://game/components/environment/environment.tscn" id="3_f8qbj"]
+[ext_resource type="PackedScene" uid="uid://bxnqvs8yvjnkw" path="res://game/components/exit_gate/exit_gate.tscn" id="4_5bsyv"]
+[ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://game/components/trigger_plate/trigger_plate.tscn" id="5_5beai"]
+[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://game/components/large_trigger_plate/large_trigger_plate.tscn" id="5_qph2h"]
+[ext_resource type="Script" uid="uid://046yasokxlji" path="res://game/components/thing_mover/thing_mover.gd" id="6_75thp"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://game/components/wall/wall.tscn" id="7_ojljd"]
+[ext_resource type="PackedScene" uid="uid://dxvnxvqnwvbxs" path="res://game/components/doggo/doggo.tscn" id="8_f8qbj"]
+[ext_resource type="PackedScene" uid="uid://bjj8a32gp0an7" path="res://game/components/player_spawn_point/player_spawn_point.tscn" id="12_mhi6w"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ttjls"]
+vertices = PackedVector3Array(5.75, 0.5, 18, 5.75, 0.5, 9, 3.75, 0.5, 9, 3, 0.5, 8.25, -17.75, 0.5, 18, 10, 0.5, 5.75, 10.25, 0.5, -7, 8.75, 0.5, -7, 8, 0.5, -7.75, 3.75, 0.5, 5.75, 3, 0.5, 6.5, 8, 0.5, -17.75, -17.75, 0.5, -17.75, 11.25, 0.5, -17.75, 11.25, 0.5, -10.25, 18, 0.5, -10.25, 18, 0.5, -17.75, 18, 0.5, 5.75, 18, 0.5, -7, 18, 0.5, 18, 18, 0.5, 9)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(10, 3, 4), PackedInt32Array(9, 10, 8), PackedInt32Array(8, 10, 11), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 4), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(18, 17, 6), PackedInt32Array(6, 17, 5), PackedInt32Array(1, 20, 0), PackedInt32Array(0, 20, 19)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navmesh"
+agent_radius = 1.0
+agent_max_slope = 50.0
+filter_ledge_spans = true
+
+[sub_resource type="Curve3D" id="Curve3D_jhqhn"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 16.597, 0, -17.481, 0, 0, 0, 0, 0, 0, 18.0656, 0, -9.75919, 0, 0, 0, 0, 0, 0, 11.6043, 0, -9.72395, 0, 0, 0, 0, 0, 0, 12.297, 0, -17.2731),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_l062r")
+
+[node name="Navigation" type="Node" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Navigation"]
+navigation_mesh = SubResource("NavigationMesh_ttjls")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.41, 0, -11.6055)
+enabled = false
+start_position = Vector3(-0.422725, 0, 2.12072)
+end_position = Vector3(-0.388883, 0, 4.08356)
+
+[node name="Static" type="Node" parent="."]
+
+[node name="Room" parent="Static" instance=ExtResource("3_bopiy")]
+room_size = Vector2(38, 38)
+
+[node name="Environment" parent="Static" instance=ExtResource("3_f8qbj")]
+
+[node name="Wall2" parent="Static" instance=ExtResource("7_ojljd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.65981, -0.0906057, -19.0604)
+length = 10.0
+
+[node name="Wall3" parent="Static" instance=ExtResource("7_ojljd")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19.0317, -0.0906057, 7.40727)
+length = 15.0
+
+[node name="Wall4" parent="Static" instance=ExtResource("7_ojljd")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.49014, -0.0906057, 7.72126)
+length = 3.0
+
+[node name="TriggerPlate" parent="." instance=ExtResource("5_5beai")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.243, -0.09061, 2.26268)
+
+[node name="WallMover" type="Node3D" parent="."]
+script = ExtResource("6_75thp")
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -4.30497, -8.55579)
+metadata/_custom_type_script = "uid://046yasokxlji"
+
+[node name="MovableWall" parent="." instance=ExtResource("7_ojljd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+length = 10.0
+
+[node name="ExitGateThingMover" type="Node3D" parent="."]
+script = ExtResource("6_75thp")
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, 0, 8.05726)
+metadata/_custom_type_script = "uid://046yasokxlji"
+
+[node name="ExitGate" parent="." instance=ExtResource("4_5bsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
+
+[node name="Doggo" parent="." node_paths=PackedStringArray("path") instance=ExtResource("8_f8qbj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.747, 0.0230365, -12.1346)
+path = NodePath("../Path3D")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_jhqhn")
+
+[node name="LargeTriggerPlate" parent="." instance=ExtResource("5_qph2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15477, 0, 0)
+
+[node name="PlayerSpawnPoint" parent="." instance=ExtResource("12_mhi6w")]
+transform = Transform3D(-0.324941, 0, 0.945734, 0, 1, 0, -0.945734, 0, -0.324941, 1.19808, 0, -7.30508)
+
+[connection signal="pressed" from="TriggerPlate" to="WallMover" method="run_once"]
+[connection signal="arrived_at_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
+[connection signal="departed_from_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]
+[connection signal="player_entered" from="ExitGate" to="." method="emit_level_finished"]
+[connection signal="pressed" from="LargeTriggerPlate" to="ExitGateThingMover" method="run_once"]

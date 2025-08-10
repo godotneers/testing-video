@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://xjpjo2cbij4j"]
 
 [ext_resource type="PackedScene" uid="uid://cc6i4eii4thwu" path="res://tests/test_support/test_lab/test_lab.tscn" id="1_74lud"]
-[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="2_pmoac"]
-[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="3_t04bh"]
-[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="4_syyqc"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://game/components/wall/wall.tscn" id="2_pmoac"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://game/components/doggo_pawn/doggo_pawn.tscn" id="3_t04bh"]
+[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://game/components/doggo_controller/doggo_controller.tscn" id="4_syyqc"]
 [ext_resource type="PackedScene" uid="uid://cpqlgyyvht2q1" path="res://tests/test_support/test_area/test_area.tscn" id="5_asry5"]
-[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="6_snp6t"]
-[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://components/large_trigger_plate/large_trigger_plate.tscn" id="7_m58ie"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://game/components/player_pawn/player_pawn.tscn" id="6_snp6t"]
+[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://game/components/large_trigger_plate/large_trigger_plate.tscn" id="7_m58ie"]
 [ext_resource type="PackedScene" uid="uid://c8su35f66ctid" path="res://tests/test_support/test_player_controller/test_player_controller.tscn" id="7_ocmkv"]
 [ext_resource type="PackedScene" uid="uid://ddb7l644pgjl3" path="res://tests/test_support/test_indicator/test_indicator.tscn" id="9_14kb8"]
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs646v3ce3ae4"]
+
+[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://game/textures/dark.png" id="1_7txf7"]
+[ext_resource type="PackedScene" uid="uid://blnqge37uf06w" path="res://game/components/player_2d/player_2d.tscn" id="2_7n3mp"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7txf7"]
+vertices = PackedVector2Array(1968, 1139, -99.3906, 1139, -93.6016, -83.1563, 1968, -85.8281)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-221, -211, 2096, -214, 2096, 1267, -228, 1267)])
+agent_radius = 128.0
+
+[node name="Level0" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_7txf7")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_repeat = 2
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = -89.0
+offset_top = -79.0
+offset_right = 1955.0
+offset_bottom = 1125.0
+texture = ExtResource("1_7txf7")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Player2D" parent="." instance=ExtResource("2_7n3mp")]
+position = Vector2(941, 552)

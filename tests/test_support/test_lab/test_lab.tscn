@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc6i4eii4thwu"]
+[gd_scene load_steps=6 format=3 uid="uid://cc6i4eii4thwu"]
 
 [ext_resource type="Script" uid="uid://bo1ngjxweivtt" path="res://tests/test_support/test_lab/test_lab.gd" id="1_1vik5"]
-[ext_resource type="Texture2D" uid="uid://brege0yocdp4" path="res://textures/orange.png" id="1_hbuuc"]
+[ext_resource type="Texture2D" uid="uid://brege0yocdp4" path="res://game/textures/orange.png" id="1_hbuuc"]
+[ext_resource type="PackedScene" uid="uid://dnkbrgkapchow" path="res://game/components/environment/environment.tscn" id="3_wnose"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuymv"]
 albedo_texture = ExtResource("1_hbuuc")
@@ -16,15 +17,6 @@ geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navmesh"
 agent_radius = 2.0
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oetmu"]
-
-[sub_resource type="Sky" id="Sky_ggsqq"]
-sky_material = SubResource("ProceduralSkyMaterial_oetmu")
-
-[sub_resource type="Environment" id="Environment_d2wot"]
-background_mode = 2
-sky = SubResource("Sky_ggsqq")
-
 [node name="TestLab" type="Node3D"]
 script = ExtResource("1_1vik5")
 
@@ -38,9 +30,4 @@ material = SubResource("StandardMaterial3D_yuymv")
 unique_name_in_owner = true
 navigation_mesh = SubResource("NavigationMesh_hbuuc")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_d2wot")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.744987, 0.520652, 0.417032, 0, -0.625161, 0.780496, 0.667079, -0.581459, -0.465737, 0, 6.10828, -7.07927)
-shadow_enabled = true
+[node name="Environment" parent="." instance=ExtResource("3_wnose")]

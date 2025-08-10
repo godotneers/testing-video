@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjj8a32gp0an7"]
+
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://game/components/player_pawn/player_pawn.tscn" id="1_enueo"]
+
+[node name="PlayerSpawnPoint" type="Node3D" groups=["player_spawn_point"]]
+
+[node name="PlayerPawn" parent="." instance=ExtResource("1_enueo")]

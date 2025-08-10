@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dw3pfwlyooulr"]
 
 [ext_resource type="PackedScene" uid="uid://cc6i4eii4thwu" path="res://tests/test_support/test_lab/test_lab.tscn" id="1_euywv"]
-[ext_resource type="PackedScene" uid="uid://c8yvwpvyqnbxs" path="res://components/vision_scanner/vision_scanner.tscn" id="2_dkybw"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyqnbxs" path="res://game/components/vision_scanner/vision_scanner.tscn" id="2_dkybw"]
 [ext_resource type="PackedScene" uid="uid://ddb7l644pgjl3" path="res://tests/test_support/test_indicator/test_indicator.tscn" id="3_dkybw"]
-[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="4_c5mtp"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://game/components/player_pawn/player_pawn.tscn" id="4_c5mtp"]
 [ext_resource type="PackedScene" uid="uid://c8su35f66ctid" path="res://tests/test_support/test_player_controller/test_player_controller.tscn" id="5_03kgh"]
-[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="5_al6vk"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://game/components/wall/wall.tscn" id="5_al6vk"]
 [ext_resource type="PackedScene" uid="uid://cpqlgyyvht2q1" path="res://tests/test_support/test_area/test_area.tscn" id="7_h60qy"]
 
 [node name="TestVisionScanner" type="Node3D"]

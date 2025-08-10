@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://brsyy0hbjk5a8"]
+
+[ext_resource type="Script" uid="uid://vdai5iqhvj1l" path="res://game/components/camera/camera.gd" id="1_otq4y"]
+[ext_resource type="Resource" uid="uid://diiw53tek7s6t" path="res://game/input/camera_movement.tres" id="2_yuem3"]
+[ext_resource type="Resource" uid="uid://bt0xw1axn570y" path="res://game/input/camera_zoom.tres" id="3_mf6hl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_smq6u"]
+
+[node name="Camera" type="Node3D"]
+script = ExtResource("1_otq4y")
+camera_movement = ExtResource("2_yuem3")
+camera_zoom = ExtResource("3_mf6hl")
+
+[node name="Arm" type="SpringArm3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SphereShape3D_smq6u")
+spring_length = 4.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="Arm"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 2.135)
+far = 32768.0

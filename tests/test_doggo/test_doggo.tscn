@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://coc0qn5voafpo"]
 
 [ext_resource type="PackedScene" uid="uid://cc6i4eii4thwu" path="res://tests/test_support/test_lab/test_lab.tscn" id="1_73x4r"]
-[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://components/wall/wall.tscn" id="2_07q3v"]
-[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://components/doggo_pawn/doggo_pawn.tscn" id="3_ktfkp"]
-[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://components/doggo_controller/doggo_controller.tscn" id="4_r5w7v"]
+[ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://game/components/wall/wall.tscn" id="2_07q3v"]
+[ext_resource type="PackedScene" uid="uid://c8yvwpvyuq5gx" path="res://game/components/doggo_pawn/doggo_pawn.tscn" id="3_ktfkp"]
+[ext_resource type="PackedScene" uid="uid://blffmkn4b1w50" path="res://game/components/doggo_controller/doggo_controller.tscn" id="4_r5w7v"]
 [ext_resource type="PackedScene" uid="uid://cpqlgyyvht2q1" path="res://tests/test_support/test_area/test_area.tscn" id="5_01qb5"]
-[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://components/player_pawn/player_pawn.tscn" id="6_07q3v"]
+[ext_resource type="PackedScene" uid="uid://byosvo2hx7df8" path="res://game/components/player_pawn/player_pawn.tscn" id="6_07q3v"]
 [ext_resource type="PackedScene" uid="uid://c8su35f66ctid" path="res://tests/test_support/test_player_controller/test_player_controller.tscn" id="7_ktfkp"]
 
 [sub_resource type="Curve3D" id="Curve3D_pgwuc"]
@@ -21,7 +21,6 @@ point_count = 4
 
 [node name="Wall" parent="." instance=ExtResource("2_07q3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94697, 0, 10.3565)
-affect_nav_mesh = null
 
 [node name="DoggoPawn" parent="." groups=["doggo"] instance=ExtResource("3_ktfkp")]
 transform = Transform3D(-0.99846, 0, 0.0554729, 0, 1, 0, -0.0554729, 0, -0.99846, -1.94697, 0, -8.16071)

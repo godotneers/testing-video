@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0liliyx8wsvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihokl"]
+shading_mode = 0
+
+[node name="WallTorch" type="Node3D"]
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837938, 1.04999, 0.434259)
+aabb = AABB(-1, -1, -1, 1, 2, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163539, 0.379683, 0)
+size = Vector3(0.347534, 0.25, 0.25)
+material = SubResource("StandardMaterial3D_ihokl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526786, 0.386731, 0)
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 30.0
