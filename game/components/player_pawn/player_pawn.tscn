@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://byosvo2hx7df8"]
+[gd_scene load_steps=6 format=3 uid="uid://byosvo2hx7df8"]
 
 [ext_resource type="Script" uid="uid://ctexmfxwjxh3b" path="res://game/components/player_pawn/player_pawn.gd" id="1_hxcsb"]
 [ext_resource type="PackedScene" uid="uid://4kb86lxbov4v" path="res://game/components/player_pawn/mr.g.glb" id="3_jtlup"]
@@ -8,10 +8,6 @@
 radius = 1.0
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_twc2s"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pickup"]
-radius = 2.0
-height = 4.0
 
 [node name="PlayerPawn" type="CharacterBody3D" groups=["player"]]
 collision_layer = 16
@@ -83,15 +79,5 @@ external_skeleton = NodePath("../mr_g/Armature/Skeleton3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.929325, 0)
 radius = 1.0
 avoidance_layers = 16
-
-[node name="DetectionArea" type="Area3D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 64
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-shape = SubResource("CapsuleShape3D_pickup")
 
 [editable path="Model/mr_g"]

@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bjj8a32gp0an7" path="res://game/components/player_spawn_point/player_spawn_point.tscn" id="12_mhi6w"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ttjls"]
-vertices = PackedVector3Array(5.75, 0.5, 18, 5.75, 0.5, 9, 3.75, 0.5, 9, 3, 0.5, 8.25, -17.75, 0.5, 18, 10, 0.5, 5.75, 10.25, 0.5, -7, 8.75, 0.5, -7, 8, 0.5, -7.75, 3.75, 0.5, 5.75, 3, 0.5, 6.5, 8, 0.5, -17.75, -17.75, 0.5, -17.75, 11.25, 0.5, -17.75, 11.25, 0.5, -10.25, 18, 0.5, -10.25, 18, 0.5, -17.75, 18, 0.5, 5.75, 18, 0.5, -7, 18, 0.5, 18, 18, 0.5, 9)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(10, 3, 4), PackedInt32Array(9, 10, 8), PackedInt32Array(8, 10, 11), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 4), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(18, 17, 6), PackedInt32Array(6, 17, 5), PackedInt32Array(1, 20, 0), PackedInt32Array(0, 20, 19)]
+vertices = PackedVector3Array(-9.64001, 0.5, 6.75, 2.85999, 0.5, 6.75, 3.60999, 0.5, 5.75, 8.10999, 0.5, -8.5, 8.10999, 0.5, -17.75, -9.64001, 0.5, -17.75, 10.86, 0.5, 5.75, 10.86, 0.5, -7.75, 8.85999, 0.5, -7.75, 11.36, 0.5, -17.75, 11.36, 0.5, -11, 18.11, 0.5, -11, 18.11, 0.5, -17.75, 18.11, 0.5, 5.75, 18.11, 0.5, -7.75, 4.35999, 0.5, 18, 4.35999, 0.5, 11.75, 3.60999, 0.5, 11.75, 2.85999, 0.5, 11, -9.64001, 0.5, 18, 5.35999, 0.5, 11.75, 6.10999, 0.5, 11, 18.11, 0.5, 18, 18.11, 0.5, 9, 6.10999, 0.5, 9)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 3), PackedInt32Array(3, 6, 2), PackedInt32Array(12, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(7, 14, 6), PackedInt32Array(6, 14, 13), PackedInt32Array(17, 16, 15), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 19), PackedInt32Array(18, 19, 0), PackedInt32Array(0, 1, 18), PackedInt32Array(15, 16, 20), PackedInt32Array(20, 21, 15), PackedInt32Array(15, 21, 22), PackedInt32Array(22, 21, 23), PackedInt32Array(21, 24, 23)]
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navmesh"
 agent_radius = 1.0
@@ -36,15 +36,14 @@ script = ExtResource("1_l062r")
 navigation_mesh = SubResource("NavigationMesh_ttjls")
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="Navigation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.41, 0, -11.6055)
-enabled = false
-start_position = Vector3(-0.422725, 0, 2.12072)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.41, 0, -11.5903)
 end_position = Vector3(-0.388883, 0, 4.08356)
 
 [node name="Static" type="Node" parent="."]
 
 [node name="Room" parent="Static" instance=ExtResource("3_bopiy")]
-room_size = Vector2(38, 38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10999, 0, 0)
+room_size = Vector2(30, 38)
 
 [node name="Environment" parent="Static" instance=ExtResource("3_f8qbj")]
 
@@ -63,24 +62,24 @@ length = 3.0
 [node name="TriggerPlate" parent="." instance=ExtResource("5_5beai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.243, -0.09061, 2.26268)
 
-[node name="WallMover" type="Node3D" parent="."]
+[node name="ThingMover" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27781, 0, -9.28148)
 script = ExtResource("6_75thp")
-start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
-end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -4.30497, -8.55579)
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27781, 0, -9.28148)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27781, -5.04666, -9.28148)
 metadata/_custom_type_script = "uid://046yasokxlji"
 
-[node name="MovableWall" parent="." instance=ExtResource("7_ojljd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.12161, -0.0906057, -8.55579)
+[node name="MovableWall" parent="ThingMover" instance=ExtResource("7_ojljd")]
 length = 10.0
 
-[node name="ExitGateThingMover" type="Node3D" parent="."]
+[node name="ThingMover2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86596, -9.37398, 12.9973)
 script = ExtResource("6_75thp")
-start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
-end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, 0, 8.05726)
+start_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86596, -9.37398, 12.9973)
+end_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86596, 0, 12.9973)
 metadata/_custom_type_script = "uid://046yasokxlji"
 
-[node name="ExitGate" parent="." instance=ExtResource("4_5bsyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41029, -7.41066, 8.05726)
+[node name="ExitGate" parent="ThingMover2" instance=ExtResource("4_5bsyv")]
 
 [node name="Doggo" parent="." node_paths=PackedStringArray("path") instance=ExtResource("8_f8qbj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.747, 0.0230365, -12.1346)
@@ -95,8 +94,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15477, 0, 0)
 [node name="PlayerSpawnPoint" parent="." instance=ExtResource("12_mhi6w")]
 transform = Transform3D(-0.324941, 0, 0.945734, 0, 1, 0, -0.945734, 0, -0.324941, 1.19808, 0, -7.30508)
 
-[connection signal="pressed" from="TriggerPlate" to="WallMover" method="run_once"]
-[connection signal="arrived_at_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
-[connection signal="departed_from_end" from="WallMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]
-[connection signal="player_entered" from="ExitGate" to="." method="emit_level_finished"]
-[connection signal="pressed" from="LargeTriggerPlate" to="ExitGateThingMover" method="run_once"]
+[connection signal="pressed" from="TriggerPlate" to="ThingMover" method="run_once"]
+[connection signal="arrived_at_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [true]]
+[connection signal="departed_from_end" from="ThingMover" to="Navigation/NavigationLink3D" method="set_enabled" binds= [false]]
+[connection signal="player_entered" from="ThingMover2/ExitGate" to="." method="emit_level_finished"]
+[connection signal="pressed" from="LargeTriggerPlate" to="ThingMover2" method="run_once"]
