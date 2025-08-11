@@ -2,18 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://game/textures/dark.png" id="1_7txf7"]
 [ext_resource type="PackedScene" uid="uid://blnqge37uf06w" path="res://game/components/player_2d/player_2d.tscn" id="2_7n3mp"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7txf7"]
-vertices = PackedVector2Array(1968, 1139, -99.3906, 1139, -93.6016, -83.1563, 1968, -85.8281)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-221, -211, 2096, -214, 2096, 1267, -228, 1267)])
-agent_radius = 128.0
+[ext_resource type="PackedScene" uid="uid://bhtq3ssctkgct" path="res://game/components/coin/coin.tscn" id="3_7n3mp"]
 
 [node name="Level0" type="Node2D"]
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_7txf7")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2
@@ -28,3 +19,15 @@ metadata/_edit_lock_ = true
 
 [node name="Player2D" parent="." instance=ExtResource("2_7n3mp")]
 position = Vector2(941, 552)
+
+[node name="Coin" parent="." instance=ExtResource("3_7n3mp")]
+position = Vector2(344, 228)
+
+[node name="Coin2" parent="." instance=ExtResource("3_7n3mp")]
+position = Vector2(1535, 340)
+
+[node name="Coin3" parent="." instance=ExtResource("3_7n3mp")]
+position = Vector2(557, 852)
+
+[node name="Coin4" parent="." instance=ExtResource("3_7n3mp")]
+position = Vector2(1436, 774)
