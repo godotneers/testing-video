@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://weqb6fo3cslx"]
+
+[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://game/textures/dark.png" id="1_xahfx"]
+
+[node name="Background" type="TextureRect"]
+texture_repeat = 2
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = -89.0
+offset_top = -79.0
+offset_right = 1955.0
+offset_bottom = 1125.0
+texture = ExtResource("1_xahfx")
+stretch_mode = 1
+metadata/_edit_lock_ = true

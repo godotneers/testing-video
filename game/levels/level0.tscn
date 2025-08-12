@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs646v3ce3ae4"]
+[gd_scene load_steps=6 format=3 uid="uid://cs646v3ce3ae4"]
 
-[ext_resource type="Texture2D" uid="uid://b4aptb1pswf5h" path="res://game/textures/dark.png" id="1_7txf7"]
+[ext_resource type="PackedScene" uid="uid://weqb6fo3cslx" path="res://game/components/background/background.tscn" id="1_7n3mp"]
 [ext_resource type="PackedScene" uid="uid://blnqge37uf06w" path="res://game/components/player_2d/player_2d.tscn" id="2_7n3mp"]
 [ext_resource type="PackedScene" uid="uid://bhtq3ssctkgct" path="res://game/components/coin/coin.tscn" id="3_7n3mp"]
 
@@ -13,18 +13,10 @@ baking_rect = Rect2(0, 0, 1920, 1080)
 [node name="Level0" type="Node2D"]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_7n3mp")
 
-[node name="Background" type="TextureRect" parent="."]
-texture_repeat = 2
-custom_minimum_size = Vector2(1920, 1080)
-offset_left = -89.0
-offset_top = -79.0
-offset_right = 1955.0
-offset_bottom = 1125.0
-texture = ExtResource("1_7txf7")
-stretch_mode = 1
-metadata/_edit_lock_ = true
+[node name="Background" parent="." instance=ExtResource("1_7n3mp")]
 
 [node name="Player2D" parent="." instance=ExtResource("2_7n3mp")]
 position = Vector2(941, 552)
