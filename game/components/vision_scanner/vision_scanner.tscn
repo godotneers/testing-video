@@ -26,6 +26,7 @@ shape = SubResource("ConvexPolygonShape3D_5fs12")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 collision_mask = 17
+hit_back_faces = false
 debug_shape_custom_color = Color(0.520904, 0.886467, 0, 1)
 debug_shape_thickness = 3
 

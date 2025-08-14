@@ -58,3 +58,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity()	
 	
 	move_and_slide()
+
+
+func teleport_to(location:Vector3):
+	global_position = location
+	

@@ -60,6 +60,7 @@ func _physics_process(_delta: float) -> void:
 
 	# Orient the ray cast to the target position
 	_ray_cast_3d.target_position = _ray_cast_3d.to_local(_target_object.global_position)
+	_ray_cast_3d.force_raycast_update()
 
 	# Check if we have line of sight
 	_has_line_of_sight = _ray_cast_3d.is_colliding() and _ray_cast_3d.get_collider() == _tracked_body

@@ -16,11 +16,8 @@ func move_to(location:Vector3):
 	
 	
 func teleport_to(location:Vector3):
-	_pawn.global_position = location	
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
+	_pawn.teleport_to(location)
+	_navigation_agent.target_position = location
 	
 func _physics_process(delta: float) -> void:
 	if _navigation_agent.is_navigation_finished():
