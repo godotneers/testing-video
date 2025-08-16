@@ -27,7 +27,7 @@ _data = {
 }
 point_count = 4
 
-[node name="Level1" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_l062r")
 
 [node name="Navigation" type="Node" parent="."]

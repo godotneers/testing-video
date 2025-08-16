@@ -10,9 +10,25 @@ func _ready() -> void:
 	_pawn = parent
 	
 	
-func move_to(location:Vector3):
+func move_to(location:Vector3, timeout_millis:int = 3000) -> bool:
 	_navigation_agent.target_position = location
-	await _navigation_agent.navigation_finished
+	# array we use to feed info back to our function
+	var holders := [false, false]
+
+	get_tree().create_timer(float(timeout_millis) / 1000.0).timeout.connect(func(): holders[0] = true	)
+	_navigation_agent.navigation_finished.connect(func(): holders[1] = true)
+	
+	while true:
+		await get_tree().process_frame
+		if holders[0]:
+			print("timeout")
+			return false
+		if holders[1]:
+			print("arrived")
+			return true
+	
+	# should never happen
+	return false
 	
 	
 func teleport_to(location:Vector3):

@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dnkbrgkapchow" path="res://game/components/environment/environment.tscn" id="2_gbr52"]
 [ext_resource type="PackedScene" uid="uid://beer7ipemffei" path="res://game/components/room/room.tscn" id="3_o0ax4"]
 [ext_resource type="PackedScene" uid="uid://bxnqvs8yvjnkw" path="res://game/components/exit_gate/exit_gate.tscn" id="4_nq7ub"]
-[ext_resource type="PackedScene" uid="uid://bbmimwt64bivt" path="res://game/components/large_trigger_plate/large_trigger_plate.tscn" id="5_7ej46"]
+[ext_resource type="PackedScene" uid="uid://v7jhkhim0lok" path="res://game/components/trigger_plate/trigger_plate.tscn" id="5_e7nd3"]
 [ext_resource type="PackedScene" uid="uid://bkqdelq0ggow3" path="res://game/components/thing_mover/thing_mover.tscn" id="6_tq58f"]
 [ext_resource type="PackedScene" uid="uid://di0lsfhe27r0f" path="res://game/components/wall/wall.tscn" id="7_k34hm"]
 [ext_resource type="PackedScene" uid="uid://bjj8a32gp0an7" path="res://game/components/player_spawn_point/player_spawn_point.tscn" id="12_i3cyh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kkm8t"]
-vertices = PackedVector3Array(-3.69326, 0.499998, -11.2807, -3.69326, 0.499998, 3.21932, 4.05674, 0.499998, 3.21932, 4.05674, 0.499998, -11.2807, -3.69326, 0.499998, 6.46932, -3.69326, 0.499998, 11.4693, 4.05674, 0.499998, 11.4693, 4.05674, 0.499998, 6.46932)
+vertices = PackedVector3Array(-3.69326, 0.499998, -11.2807, -3.69326, 0.499998, 4.46932, 4.05674, 0.499998, 4.46932, 4.05674, 0.499998, -11.2807, -3.69326, 0.499998, 7.71932, -3.69326, 0.499998, 11.4693, 4.05674, 0.499998, 11.4693, 4.05674, 0.499998, 7.71932)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navmesh"
@@ -18,7 +18,7 @@ agent_radius = 1.0
 agent_max_slope = 50.0
 filter_ledge_spans = true
 
-[node name="Level2" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_mf7v1")
 
 [node name="Navigation" type="Node" parent="."]
@@ -26,6 +26,10 @@ script = ExtResource("1_mf7v1")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Navigation"]
 navigation_mesh = SubResource("NavigationMesh_kkm8t")
 metadata/_edit_lock_ = true
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="Navigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.694, 0, 4.298)
+end_position = Vector3(0, 0, 3)
 
 [node name="Static" type="Node" parent="."]
 
@@ -38,13 +42,8 @@ room_size = Vector2(10, 25)
 [node name="ExitGate" parent="." instance=ExtResource("4_nq7ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.416649, -0.553014, 9.39059)
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="ExitGate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.277349, 0, -7.98495)
-end_position = Vector3(0, 0, 3)
-
-[node name="LargeTriggerPlate" parent="." instance=ExtResource("5_7ej46")]
+[node name="TriggerPlate" parent="." instance=ExtResource("5_e7nd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.416165, 1.43051e-06, 0.583219)
-minimum_entity_count = 1
 
 [node name="ThingMover" parent="." instance=ExtResource("6_tq58f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53112, -3.8147e-06, 6.19181)
@@ -60,4 +59,4 @@ metadata/_edit_lock_ = true
 transform = Transform3D(-0.815795, 0, 0.578342, 0, 1, 0, -0.578342, 0, -0.815795, 0.766991, 0, -9.14273)
 
 [connection signal="player_entered" from="ExitGate" to="." method="emit_level_finished"]
-[connection signal="pressed" from="LargeTriggerPlate" to="ThingMover" method="run_once"]
+[connection signal="pressed" from="TriggerPlate" to="ThingMover" method="run_once"]

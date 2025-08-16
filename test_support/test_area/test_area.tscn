@@ -17,6 +17,7 @@ resource_local_to_scene = true
 radius = 1.0
 
 [node name="TestArea" type="Area3D"]
+collision_layer = 0
 script = ExtResource("1_bci4i")
 
 [node name="Light" type="CSGCylinder3D" parent="."]

@@ -104,6 +104,7 @@ shape = SubResource("CylinderShape3D_52v10")
 [node name="FixedPart" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 use_collision = true
+collision_layer = 0
 size = Vector3(2, 0.3, 2)
 
 [node name="MovingPart" type="CSGBox3D" parent="."]

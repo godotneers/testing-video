@@ -31,6 +31,8 @@ var _material:StandardMaterial3D
 			_current_color = Color.BLACK	
 			turned_off.emit()
 			
+		_refresh()
+			
 
 var _current_color:Color = color if is_on else Color.BLACK
 
