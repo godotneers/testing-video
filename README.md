@@ -1,4 +1,4 @@
-﻿# Automated testing in Godot
+﻿# Press Play, Know it works - Automated testing in Godot
 
 <p align="center">
   <a href="https://youtu.be/RCKqouD9bPI">
@@ -23,4 +23,19 @@ If this video and the example code were helpful to you, please consider supporti
 
 ## License
 
-The code in this repository are licensed under the MIT license. See the LICENSE file for more information. All the image assets used in this repository (except the `addons` folder) are licensed under CC-BY-SA 4.0 (see http://creativecommons.org/licenses/by-sa/4.0/). Addons in the `addons` folder have their own licensing, please check the respective addon website for details.
+The code in this repository are licensed under the MIT license. See the LICENSE file for more information. All the image assets used in this repository (except the `addons` folder and assets in the _Attributions_ section) are licensed under CC-BY-SA 4.0 (see http://creativecommons.org/licenses/by-sa/4.0/). Addons in the `addons` folder have their own licensing, please check the respective addon website for details.
+
+## Attributions
+### Used sound effects
+
+- Under [Pixabay Content License](https://pixabay.com/service/license-summary/)
+    - Sound Effect by u_i15wxund59 from Pixabay
+    - Sound Effect by freesound_community from Pixabay
+
+### Used textures
+
+- Under [CC0 License](https://creativecommons.org/publicdomain/zero/1.0/)
+    - Kenney [prototyping textures](https://kenney.nl/assets/prototype-textures)
+- Under [Freepik License](https://support.freepik.com/s/article/Is-Freepik-for-free?language=en_US)
+    - [Texture](https://www.freepik.com/free-photo/gold-textured-background_3012168.htm)
+    - [Texture](https://www.freepik.com/free-photo/stone-texture_1034007.htm)
